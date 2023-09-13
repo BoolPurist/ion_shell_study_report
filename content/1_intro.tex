@@ -1,0 +1,42 @@
+\chapter{Introtuction}\label{ch:intro}
+
+\section{What is Ion Shell}
+
+Ion Shell is a program written in rust.
+It is maintained on a git repository on the gitlab server for redox os ecosystem \cite{ion_shell}.
+It is a shell which executes commands within a terminal emulator via read evaluation loop.
+Like other shells, Ion Shell also allows the execution of scripts in its own language.
+It serves as the default shell on redox os.
+As moment of writing ion shell can also be used on Linux.
+This shell is interpreted statement by statement.
+There is an online manual for the usage of ion shell available \cite{ion_shell_online_manual}.
+
+\subsection{Scripting in Ion Shell}
+
+The work which was performed during the it project resolved mainly around the scripting aspect of Ion Shell.
+Because of this the scripting language of Ion Shell is introduced in more details as a preamble.
+To better illustrate certain aspect of scripting with this shell, certain differences between It and bash are discussed.
+
+Bash only operates on text and does have not have concept of types.
+Ion Shell on the other hand works in structural typing.
+A certain section of the online manual of Ion Shell lists all possible types \cite{ion_shell_types}.
+Form this reference we conclude that Ion shell has following primitive types:
+
+- str
+- bool
+- int
+- float
+
+And also provides these structural typing via:
+
+- Array:
+- Hashmap:
+- Btreemap:
+
+Working with these types instead of just text provides a better detection of programming errors.
+Since Ion Shell is interpreted statement by statement, these errors are caught at runtime though.
+
+It is important to note there is no nominal typing in Ion Shell.
+Declaration of an object or struct with named fields is not possible like in other programming languages like Rust, Java, C\# etc ..
+
+

@@ -1,0 +1,118 @@
+\chapter{Development in Ion Shell}
+
+\section{Finding areas for contribution}
+
+With the goal to contribute to Ion shell during the period of the it project, the possible bug fixes/features needed to be determined first.
+The following activities were undertaken to find out concrete tasks to accomplish:
+
+- Going through the online manual of Ion Shell.
+- Reading posted issues on the GitLab Repository of Ion shell.
+
+The online manual of the shell is meant for the users of the application.
+It focuses on the following points:
+
+- What and how something can be done in an interactive session.
+- Features of the scripting language.
+- Philosophy the application. Why does it exits and what it is supposed to be.
+
+Investigating the online manual of Ion shell provided the overview of already implemented features and how the shell was meant to be used.
+While reading the manual, it became clear that the documentation lacked explanations in certain areas.
+Later on additions to the documentation were also required for new implemented features in Ion Shell.
+Because of this the manual presents one of the fields in Ion shell for contribution.
+
+Another important source for the deduction of tasks is the collection of issues and pending pull requests from a repository.
+This investigation yielded a number of goals to undertake.
+However it also pointed out that the development of this project stagnated for a while.
+Over the course of the it project I would be the only contributor, most of time.
+
+\section{Automated testing of features}
+
+Unit tests and integration tests are the 2 forms of tests used to verify the functionality of the shell.
+The observation of the code base suggests that the first form as unit tests are mainly used to inspect the correctness of tokenisation, parsing and
+evaluation of the builtin functions of the shell in isolation.
+It is important to note that these unit tests execute and assert inner/private functions too
+in contrast to other programming languages like CSharp where unit test should not access private functionality easily.
+This is typical in the Rust language because unit tests are often in the children module in respect of the code to be tested.
+Visibility in Rust enables code in a children module to have full access to all functionality in a parent module.
+This allows to test private functions in Rust easily \cite{rust_testing_private_function}.
+
+Integration tests vary depending on the kind of application.
+Ion shell's approach to integration test is the execution of script files
+and comparing the output to text files which contain the expected output for the test.
+These testing does therefore focus on the scripting aspect of the shell.
+Especially this kind of testing is valued highly according to the Contributing Guidelines of this porject \cite{ion_shell_contributing}.
+Since rust does not provide a builtin way to perform these kinds of tests,
+a rather complex bash script was written to orchestrate this kind of integration tests.
+Before this it project there was no explanation of how these new integration tests are executed and how they should be written.
+It was however paramount to add new integration tests to verify bug fixes and implemented features.
+A documentation section in the contributing guideline was crafted during the process of
+learning the working of this integration tests \cite{ion_shell_contributing}.
+This will hopefully reduce the learning effort for future contributors in the area of integration tests.
+
+\section{Example of development}
+
+\subsection{Implementing an array method in Ion Shell}
+
+The feature Parameter Substitution via the array method "subst" ought to represent in the development work in Ion Shell.
+The following tasks were performed to archive the implementation:
+
+- Determine the desired behaviour of the array method.
+- Create a test to verify the functionality of the implementation.
+- Implement the method in Ion shell.
+- Document this feature in the online manual of Ion shell.
+
+The implementation was proposed and merged under the Pull Request \cite{pr_subst_method}.
+
+\subsubsection{Finding out the desired behaviour of "subst"}
+
+This feature was requested in an issue a certain while ago \cite{ion_shell_subst_issue}.
+In this issue the specifics of behaviour of this array method have already been discussed too.
+The discussion concluded the following signature of "subst".
+
+```text
+subst(input: T, default: T) -> T
+```
+source: \cite{issue_subst_request}
+
+Where the invariant says that T must be of type array.
+This array method takes two arguments as arrays and returns either the first or second argument.
+The first one is returned if it is not an empty array. Otherwise the second argument is returned.
+The accomplished implementation follows the signature and invariant.
+
+\subsection{Creating integration test for the implementation}\label{subst_test}
+
+To verify the functionality of the implementation, an integration test was added to test suit.
+An integration test consists of 2 files. One is an ion file which is executed by the shell an other is a plain text file with extension "out".
+This text file describes the expected output of the execution of the ion test file.
+For this implementation there is the file "subst.ion" and "subst.out"
+where "subst" is the name of the test. Both file must share the same base file name, here "subst".
+
+The code snippet 1.1 represents the test code.
+
+\begin{lstlisting}[language=sh,caption={integration test for subst method. Source: \cite{ion_shell_subst_ion_test}},captionpos=b]
+
+let array = []
+
+# Inline array in the method
+echo @subst(@array [foo bar])
+
+# single value
+echo @subst(@array [baz])
+
+# variable expansion
+let default = [foobar]
+echo @subst(@array @default)
+
+# method would not trigger
+let array ++= faz
+echo @subst(@array @default)
+
+for number in  @subst([] [2 3])
+  echo $number
+end
+
+\end{lstlisting}
+
+\subsection{Implementation of "subst"}
+
+\subsection{Documentationa of "subst"}
