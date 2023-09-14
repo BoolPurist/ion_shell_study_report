@@ -20,6 +20,12 @@
 	\item Converted unguarded unsafe conversion to utf-8 string. \cite{pr_unsave_utf8_removal}
 \end{itemize}
 
+Related to redoxer
+
+\begin{itemize}
+	\item Fixed semantic version of redoxer and applied missing argument for a function to fix compiler failure \cite{pr_bump_fix_redoxer}.
+\end{itemize}
+
 \subsection{Code Quality}
 
 \begin{itemize}
@@ -81,13 +87,29 @@ The following issues were not opened by me but resolved by me via contribution.
 
 This issues were opened by me to report an problem. But they were not solved by me.
 
+Redoxer related
+
 \begin{itemize}
-	\item Reported general failing of Ci for ion shell \cite{issue_failing_ci}.
-	\item Reported that a job called "linux:stable" in the Ci still fails \cite{issue_ci_linux_stable_fail}.
-	\item Reported the missing feature of handling redox os schemes in general \cite{issue_disk_scheme}.
+	\item Requested the rebuilding of the docker image for redoxer so that the Ion Shell repository can be build with a new rust version \cite{issue_request_new_docker_version}.
+\end{itemize}
+
+\subsection{Still Opened Isssues}
+
+This issues were opened by me to report an problem. But they have not been solved yet.
+
+\begin{itemize}
 	\item Noted null-coalescing operator as a possible language feature \cite{issue_null_coalescing_operator}. Was brought up in the discussion in the issue \cite{pr_subst_method}.
 	\item Noted down the trenary as a possible language feature \cite{issue_ternary_operator_arrays_strings}. Was brought up in the discussion in the issue \cite{pr_subst_method}.
+	\item Reported the missing feature of handling redox os schemes in general \cite{issue_disk_scheme}.
 	\item Proposed more information for error messages to end user. Espeacally by providing the locatoin where the error occured, ake line and colum \cite{issue_enrich_error_message_information}.
+	\item Reported general failing of Ci for ion shell \cite{issue_failing_ci}.
+	\item Reported that a job called "linux:stable" in the Ci still fails \cite{issue_ci_linux_stable_fail}.
+\end{itemize}
+
+Redoxer related
+
+\begin{itemize}
+	\item Reported that command "redoxer exec true" does fail on fedora \cite{issue_redoxer_exec_true}.
 \end{itemize}
 
 
