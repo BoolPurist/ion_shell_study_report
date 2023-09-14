@@ -87,6 +87,7 @@
 
 % configure your listings style
 \usepackage{listings}
+\usepackage{listings-rust}
 \lstset{
 	tabsize=3,
 	extendedchars=true,
@@ -116,13 +117,13 @@
 \newcommand{\ie}{\mbox{i.\,e.\ }}
 \newcommand{\wrt}{\mbox{w.\,r.\,t.\ }}
 \newcommand{\etal}{\mbox{\emph{et.\,al.\ }}}
+\newcommand{\commitid}{60bfb73351f0412c95b8ba2afe75e988514470a6}
 
 \usepackage{blindtext}
 
 % load glossary entries
 \makenoidxglossaries
 \loadglsentries{glossary}
-
 \begin{document}
 
 \setcounter{secnumdepth}{3}  % numerate subsections
@@ -135,8 +136,8 @@
 %\includepdf{SB_0050_FO_Pruefungsrechtliche_Erklaerung_und_Erklaerung_zur_Veroeffentlichung_der_Abschlussarbeit_public.pdf}\cleardoublepage
 
 \tableofcontents
-
 \mainmatter
+\include{content/0_abstract}
 \include{content/1_intro}
 \include{content/2_development}
 \include{content/3_result}

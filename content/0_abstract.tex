@@ -1,14 +1,55 @@
 \thispagestyle{empty}
-\section*{Kurzdarstellung}
-\label{sec:kurzdarstellung}
-Kurze Zusammenfassung der Arbeit, höchstens halbe Seite.
-Deutsche Fassung auch nötig, wenn die Arbeit auf Englisch angefertigt wird.
 
-\blindtext
+\section{Abstract}
 
+This report describes the development contribution to Ion Shell for the It project "redox"
+between the winter term 2022 and summer term 2023.
+First an introduction about Ion Shell is provided.
+In the next chapter the typical development process which I applied, is shown
+via examples of bug fixes and feature implementations for Ion Shell.
+In additions that section indents to showcase how documentation, testing and coding can be performed for Ion Shell.
+After that chapter a reflection outlines the current status of Ion Shell.
+This reflection also involves achievements of my development work and left tasks/goals I could not complete.
+In the last chapter a listing of all my created issues and conducted pull requests are provided to quantify the development work.
 
-\section*{Abstract}
-\label{sec:abstract}
-\emph{Only if thesis is written in English.}
+\section{Abstract in German}
 
-\blindtext
+Dieser Bericht beschreibt die Entwicklung als Beitrag zu Ion Shell für das It Projekt "redox"
+während dem Wintersemester 2022 und Sommersemester 2023.
+Zuerst kommt eine Einleitung zu Ion Shell.
+Im nächsten Kapitel wird der typische Entwicklungsprozess, den Ich angewendet habe,
+durch Beispiel in Form von Fehlerbehebung und Implementierung von Features aufgezeigt.
+Zusätzlich soll dieses Kapitel demonstrieren wie Dokumentation, das Testen und die Programmierung für Ion Shell durchgeführt werden kann.
+Nach diesem Kapitel soll der aktuelle Status von Ion Shell verdeutlicht werden.
+Dieser Teil soll auch die Errungenschaften meiner Entwicklungsarbeit und die übrigen Aufgaben/Ziele welche Ich nicht vollendend konnte, aufzeigen.
+Im letzten Kapitel wird eine Auflistung von all meinen erstellten Issues und durchgeführten Pull Requests dargestellt um
+meine Entwicklungsarbeit zu quantifizieren.
+
+\clearpage
+
+\section{Sources of code snippets}
+
+In several places, code snippets are used to illustrate certain points.
+Code snippets are taken from the Ion Shell repository on Gitlab \cite{link_repos_ion_shell}
+
+based on the commit id \commitid.
+Unfortunately I could not generate an online link to a file based on a certain commit.
+For this reason I include a local copy of the repository beside this report.
+The name of this snapshot is "ion.zip".
+This local copy is a snapshot of the repository based on the commit \commitid.
+A source item in the bibliography of a code snippet is therefore a local file path within this local snapshot.
+
+The Notation for file paths is as follows:
+
+```
+<folder> -> <folder> -> .. -> <file>
+```
+
+Therefore the following Example:
+
+```
+src -> shell -> flow.rs
+```
+
+Equals the flow.rs file inside the folder shell which is inside the folder src at the root project.
+
