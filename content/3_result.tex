@@ -10,13 +10,23 @@ so that they also show the location where the error occurred with a respective l
 This improvement upon error message were noted down in an still opened issue \cite{issue_enrich_error_message_information}
 The parser of ion shell does not keep track of line and columns numbers for statements.
 Because of this one can not incorporate the source location into the error values for later error reporting.
-A workaround was attempted via counting at least the line numbers per executed statement.
 
+A workaround was attempted via counting at least the line numbers per executed statement.
 There is a for loop, see code snippet \ref{code:execution_for_code_snippet} at line \ref{code:execute_loop},
 which terminates, parses and executes statements one by one.
 This workaround could at least provide the line number of the source location.
+That attempt however did not work for all scenarios.
+In cases of calling a function in Ion Shell wrong line numbers occur however.
+This oddity comes from the fact that statements within a function are executed in a batch.
+Let us consider the following code snippet TODO add code snippet.
+If an error occurs at line .. then the line number is 4 with the workaround because that is where the function was called.
+In addition to that the execution of builin methods do propagate their error up to the execution loop \ref{code:execution_for_code_snippet}.
+If an error happens a message is directly printed to the console via this section TODO.
 
-
+In my view the solution is to rewrite the tokenisation and parsing in a way so that
+a token/language item is somehow linked to its respective column and line number.
+This rewrite however requires  coordination with the respository owner and significant amount of work
+which exceeds the available time I could afford to spend for the it project.
 
 \clearpage
 \begin{lstlisting}[escapeinside={(*}{*)},label={code:execution_for_code_snippet},language=Rust,caption={For loop which terminates,parses and interprets statements. Source: \cite{file_ref_execute_loop}},captionpos=b]
