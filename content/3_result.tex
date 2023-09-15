@@ -1,9 +1,88 @@
-\chapter{Conclutions after the development}
+\chapter{Conclusions after the development}
 
-\section{What is left to do}
+\newcommand{\itemIonShellRegularContributor}{\textbf{Ion Shell has no regular contributors}}
+\newcommand{\itemIonShellCI}{\textbf{}
+	\textbf{Ion Shell has not mainted dependencies}
+}
+\newcommand{\itemIonShellDistribution}{
+	\textbf{Ion Shell has no distribution for end user on Linux}
+}
+\newcommand{\itemIonShellDependencies}{\textbf{Ion Shell CI is not functioning correctly}}
+
+\section{Accomplishments}
+
+\section{Status of Ion Shell}
+
+\subsection{Problems with Ion Shell}
+
+This part points out certain aspects of Ion Shell which should be improved on.
+
+\begin{itemize}
+	\item \itemIonShellRegularContributor
+	\item \itemIonShellDependencies
+	\item \itemIonShellDistribution
+	\item \itemIonShellCI
+\end{itemize}
+
+\itemIonShellRegularContributor
+
+The Gitlab repository of Ion Shell does not indicate an active development community
+from the beginning of the it project up to the moment of writing.
+The last commit before my first contribution was .. .
+Up to the moment of writing most commits were done by me.
+A few exceptions were occasional pull requests ...
+Throughout the it-project there was only one person who reviewed and accepted pull requests.
+This individual in question is , , the .. .
+The lack of regular contribute could lead to a complete hall of the development of Ion Shell.
+
+\itemIonShellDependencies
+
+A number of dependencies used by Ion Shell are not maintained anymore ...
+If newly needed features or bugs arise from those libraries, then someone has to do it on their own.
+This puts more complexity on the new potential contributors as they might have to learn and adjust separate code bases.
+
+\itemIonShellDistribution
+
+Ion Shell can be still considered an alpha program.
+During the development phase of it project I discovered pretty fast new bugs and needed features.
+With a larger user space these issues could be detected early.
+More users could provide more feedback to the program and even attract potential contributor.
+Additional contributors is what this project really needs the most.
+Ion Shell can be complied and run on Linux.
+However it lacks official distribution channels for linux end user .
+A user indenting to use this shell, has to install the rust tool chain before and then compile the program.
+More Linux use rend users could be reached the program would be released on distribution channels like dnf, apt etc .. .
+
+\itemIonShellCI
+
+Not all jobs of the Ion Shell CI' do still not complete successfully.
+While the jobs .. now run successfully due to my contribution
+The other jobs .., still fail.
+This is problematic. While local compilation and manually run test suit can provide detection of problems, it not enforced.
+Every pull requests therefore require also inspection of the compilation and a working test suit for the code reviewer.
+This could be automated with a proper CI.
+Beside causing more work for the reviewer, it also can hinder the confidence of new contributors not knowing that CI can run successfully right now.
+I tried communicating this problem via following issues .. .
+In addition I talked to the community about this on the matrix server on several occasions.
+
+
+\section{What is left to do in Ion Shell}
 
 This section describes which goals for the it project could not be archived.
 The description also contains the reasons why a goal could be accomplished.
+
+\begin{itemize}
+	\item Incorporate the source location, (file name, line number, column number) into the error message.
+	\item Implement wild card expansion for various schemes like disk ..
+	\item Make the CI work on all jobs possible.
+\end{itemize}
+
+The following bullet points were non-goals during the it-project. Nonetheless they were identified as worthwhile endeavours.
+
+\begin{itemize}
+	\item Provide various deploy set ups to publish Ion Shell on various package managers like apt, dnf, ..
+	\item Port Ion Shell to windows.
+\end{itemize}
 
 \subsection{Enriching error messages}
 
