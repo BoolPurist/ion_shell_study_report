@@ -1,0 +1,24 @@
+/// Receives a command and attempts to execute the contents.
+pub fn on_command(
+    &mut self,
+    command_to_execute: impl Iterator<Item = u8>,
+    set_cmd_duration: bool,
+) -> std::result::Result<(), IonError> {
+    // ... some code before 
+    for stmt in command_to_execute.batching(
+    |cmd| Terminator::new(cmd).terminate()) { (*\label{code:execute_loop}*) 
+        // Go through all of the statements and build up 
+        // the block stack
+        // When block is done return statement for execution.
+        for statement in StatementSplitter::new(&stmt) { 
+            let statement = parse_and_validate(statement?)?;
+            if let Some(stm) = Self::insert_statement(
+              &mut self.flow_control, statement
+              )? {
+                self.execute_statement(&stm)?; 
+            }
+        }
+    }
+    // ... some code after
+    Ok(())
+}

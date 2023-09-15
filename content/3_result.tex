@@ -5,11 +5,23 @@
 This section describes which goals for the it project could not be archived.
 The description also contains the reasons why a goal could be accomplished.
 
-One goal was to enrich error message in Ion Shell in a way
-so that they also show the location where the error occurred with a respective line and column number.
-This improvement upon error message were noted down in an still opened issue \cite{issue_enrich_error_message_information}
+\subsection{Enriching error messages}
+
+One area of contribution was focused on enriching error message in Ion Shell.
+Error messages in Ion Shell already provide specific information about what problem occured.
+However the details within certain error messages had some potential for improvement.
+The following merged pull requests of mine were focused on that areas:
+
+\begin{itemize}
+	\item Out of bounds errors show the invalid index and the length of an array \cite{pr_error_message_shows_invalid_range}.
+	\item Errors because of the reference of an undeclared variable now show the name of the undeclared one \cite{pr_better_not_found_variable_show}.
+\end{itemize}
+
+Another aspect of missing information for error messages was the source location where an error was encountered.
+The source location is the respective line and column number.
+The source location in an error message as a feature were noted down in an still opened issue \cite{issue_enrich_error_message_information}.
 The parser of ion shell does not keep track of line and columns numbers for statements.
-Because of this one can not incorporate the source location into the error values for later error reporting.
+Because of this, one can not simply incorporate the source location into the error messages.
 
 A workaround was attempted via counting at least the line numbers per executed statement.
 There is a for loop, see code snippet \ref{code:execution_for_code_snippet} at line \ref{code:execute_loop},
@@ -24,49 +36,9 @@ In addition to that the execution of builin methods do propagate their error up 
 If an error happens a message is directly printed to the console via this section TODO.
 
 In my view the solution is to rewrite the tokenisation and parsing in a way so that
-a token/language item is somehow linked to its respective column and line number.
-This rewrite however requires  coordination with the respository owner and significant amount of work
+a token/language items are linked to its respective column and line number.
+This rewrite however requires coordination with the respository owners and significant amount of work
 which exceeds the available time I could afford to spend for the it project.
 
-\clearpage
-\begin{lstlisting}[escapeinside={(*}{*)},label={code:execution_for_code_snippet},language=Rust,caption={For loop which terminates,parses and interprets statements. Source: \cite{file_ref_execute_loop}},captionpos=b]
-/// Receives a command and attempts to execute the contents.
-pub fn on_command(
-    &mut self,
-    command_to_execute: impl Iterator<Item = u8>,
-    set_cmd_duration: bool,
-) -> std::result::Result<(), IonError> {
-    let command_start_time = if set_cmd_duration 
-    { Some(SystemTime::now()) } else { None };
-
-    for stmt in command_to_execute.batching(
-    |cmd| Terminator::new(cmd).terminate()) { (*\label{code:execute_loop}*) 
-        // Go through all of the statements and build up 
-        // the block stack
-        // When block is done return statement for execution.
-        for statement in StatementSplitter::new(&stmt) { 
-            let statement = parse_and_validate(statement?)?;
-            if let Some(stm) = Self::insert_statement(
-              &mut self.flow_control, statement
-              )? {
-                self.execute_statement(&stm)?; 
-            }
-        }
-    }
-
-    if let Some(start_time) = command_start_time {
-        if let Ok(elapsed_time) = start_time.elapsed() {
-            self.variables_mut()
-            .set(
-                "CMD_DURATION", 
-                elapsed_time.as_secs().to_string()
-            );
-        }
-    }
-
-    Ok(())
-}
-\end{lstlisting}
-
-
+\rustCode{execution_loop}{code:execution_for_code_snippet}{file_ref_execute_loop}{For loop which terminates,parses and interprets statements}
 
