@@ -1,0 +1,38 @@
+# String expansion
+let string = "example string"
+echo $string
+echo $string:$string
+# Output
+# example string
+# example string:example string
+
+# Arrays are with an different sigil expaneded "@" instead of "$"
+let array = [one two three]
+echo @array
+# Output
+# one two three
+
+# Brace expansion with different types
+echo {1..10}
+echo {10..1}
+echo {1...10}
+echo {10...1}
+echo {a..d}
+echo {d..a}
+echo {a...d}
+echo {d...a}
+# Output
+# 1 2 3 4 5 6 7 8 9
+# 10 9 8 7 6 5 4 3 2
+# 1 2 3 4 5 6 7 8 9 10
+# 10 9 8 7 6 5 4 3 2 1
+# a b c
+# d c b
+# a b c d
+# d c b a
+
+# Arithmetic Expansion
+# Addtion
+echo $((a + b))
+# Raising to power of 2
+echo $((a ** 2))

@@ -3,6 +3,7 @@
 \section{Pull Requests}
 
 \subsection{Features}
+\label{accomplishment_features}
 
 \begin{itemize}
 	\item Implemented pipefail feature. If at least one command in pipeline returns an error, the whole pipeline returns an error.\cite{pr_pipefail}.
@@ -12,7 +13,7 @@
 	\item Implemented subst method for Ion Shell. \cite{pr_subst_method}
 \end{itemize}
 
-\subsection{Bug fixes}
+\subsection{Bug fixes}\label{accomplishment_bug_fixes}
 
 \begin{itemize}
 	\item Make all buitlins of ion shell included the ion manual after building documentation \cite{pr_man_history_included_ion_manual}.
@@ -27,6 +28,7 @@ Related to \gls{redoxer}
 \end{itemize}
 
 \subsection{Code Quality}
+\label{accomplishment_code_quality}
 
 \begin{itemize}
 	\item Scripted option to only run one selected integration test. \cite{pr_single_test_selectable}
@@ -38,11 +40,11 @@ Related to \gls{redoxer}
 	\item Removed not used struct field. \cite{pr_removed_flag_undead_code}
 \end{itemize}
 
-\subsection{Documentation}
+\subsection{Documentation}\label{accomblishment_docs}
 
 \begin{itemize}
 	\item Moved msrv from clippy file to Cargo.toml. \cite{pr_moved_msrv_to_cargo}
-	\item Documented how the documentation of builtin are generated into Ion Shell online manual. \cite{pr_docs_how_builtin_generated}
+	\item Documented how the documentation of builtin are generated into the Ion Shell online manual. \cite{pr_docs_how_builtin_generated}
 	\item Wrote section about how integration test work and how to write them. \cite{pr_docs_section_integraion_test}
 	\item Provided additional command for building ion manual locally. \cite{pr_docs_commands_building_ion_manual}
 	\item Fixed formatting in the builtin section of the ion manual \cite{pr_docs_fix_wrong_builtin_manual_section}
@@ -50,6 +52,7 @@ Related to \gls{redoxer}
 	\item Added notes/links to ion plugin. \cite{pr_docs_ion_plugin}
 	\item Documented feature of initializing file. \cite{pr_docs_init_file}
 	\item Added output to example of creating an array withing the ion manual \cite{pr_docs_output_create_array}
+	\item Created a section about how integration tests work in Ion Shell. It also contains guides how to write integration tests for Ion Shell \cite{pr_docs_how_to_integration_test}.
 \end{itemize}
 
 \subsection{Configuration}

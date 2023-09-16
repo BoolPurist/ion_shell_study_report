@@ -1,0 +1,5 @@
+# Returns a string which the repetition of the 1. argument 
+# times 2. argument as a number.
+echo $repeat("abc, " 3)
+# Output:
+# abc, abc, abc, 

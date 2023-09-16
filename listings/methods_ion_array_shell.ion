@@ -1,0 +1,11 @@
+# Lines splits a string into an array of elements.
+# These elements are seperated by "\n" as new line.
+echo @lines($unescape("firstline\nsecondline"))
+for line in @lines($unescape("third\nfourth\nfifth"))
+    echo $line
+end
+# Output
+# firstline secondline
+# third
+# fourth
+# fifth

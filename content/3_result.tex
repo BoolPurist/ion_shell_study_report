@@ -1,5 +1,43 @@
 \chapter{Conclusions after the development}
 
+\section{Accomplishments}
+Over the period of the it project, participation in a number of areas of development were performed:
+
+\begin{itemize}
+	\item Improving Code quality for example refactoring.
+	\item Documentation.
+	\item Writing unit tests and integration tests.
+	\item Bug fixes.
+	\item Implementation of features.
+\end{itemize}
+
+It was possible to get the code quality to a point where no warnings or complication errors occurred.
+The all pull requests described in the section \ref{accomplishment_code_quality} contributed to this success.
+
+Contribution in regard of documentation was another portion of development, listed in \ref{accomblishment_docs}.
+This not involved the markdown files at the project root and the comments within the source code but also the part of the ion manual.
+This will hopefully server future contributors well.
+
+Ion Shell as any other software contains bugs of course. Some the bugs could be fixed via code contribution on my side, listed in \ref{accomplishment_bug_fixes}.
+A few features were also achieved, listed in \ref{accomplishment_features}.
+
+The integration tests of Ion Shell were analyzed and comprehended. On one hand this knowledge could be leveraged to create effective tests
+which verify the correct behaviour of the implemented features and bug fixes.
+On the other hand this understanding lead to a section about how to write the integration tests in Ion Shell \cite{pr_docs_how_to_integration_test}.
+
+\section{Status of Ion Shell}
+
+Ion Shell is not only capable of running on redox os but also quit well on a Linux distribution.
+This fact became more than clear by the my conducted development of Ion Shell on a Linux distribution.
+
+The scripting API of Ion Shell allows for writing more correct automation compared to shells like bash shell.
+Structural typing and various higher level language features like expansion \ref{ion_shell_lang_expansion} methods \ref{ion_shell_lang_methods} and control flow \ref{ion_shell_lang_control_flow}.
+
+\subsection{Problems with Ion Shell}
+
+However Ion Shell has unfortunately several troublesome areas.
+This section points out those aspects of Ion Shell which should be improved on.
+
 \newcommand{\itemIonShellRegularContributor}{\textbf{Ion Shell has no regular contributors}}
 \newcommand{\itemIonShellCI}{\textbf{}
 	\textbf{Ion Shell has not mainted dependencies}
@@ -9,20 +47,13 @@
 }
 \newcommand{\itemIonShellDependencies}{\textbf{Ion Shell CI is not functioning correctly}}
 
-\section{Accomplishments}
-
-\section{Status of Ion Shell}
-
-\subsection{Problems with Ion Shell}
-
-This part points out certain aspects of Ion Shell which should be improved on.
-
 \begin{itemize}
 	\item \itemIonShellRegularContributor
 	\item \itemIonShellDependencies
 	\item \itemIonShellDistribution
 	\item \itemIonShellCI
 \end{itemize}
+
 
 \itemIonShellRegularContributor
 
