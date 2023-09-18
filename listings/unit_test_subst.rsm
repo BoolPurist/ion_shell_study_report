@@ -1,0 +1,55 @@
+...
+#[test]
+fn test_subst_variable_over_default() {
+    let method = ArrayMethod::new(
+         "subst", 
+         "@ARRAY", 
+         Pattern::StringPattern("[2, 3]"), 
+         None
+       );
+    assert_eq!(
+      method.handle_as_array(&mut DummyExpander).unwrap(), 
+      args!["a", "b", "c"]
+    );
+}
+#[test]
+fn test_subst_default_over_empty_array() {
+    let method = ArrayMethod::new(
+        "subst", "[]", Pattern::StringPattern("[2 3]"), 
+        None
+      );
+    assert_eq!(
+      method.handle_as_array(&mut DummyExpander).unwrap(), 
+      args!["2", "3"]
+    );
+}
+#[test]
+fn test_subst_fail_no_array_variable() {
+    let method =
+          ArrayMethod::new(
+          "subst", 
+          "not an array", 
+          Pattern::StringPattern("[2 3]"), 
+          None
+        );
+    assert!(method.handle_as_array(&mut DummyExpander).is_err());
+}
+#[test]
+fn test_subst_fail_default_is_no_array() {
+      let method = ArrayMethod::new(
+      "subst", "[]", 
+      Pattern::StringPattern("not an array"), 
+      None
+    );
+    assert!(method.handle_as_array(&mut DummyExpander).is_err());
+}
+#[test]
+fn test_subst_fail_default_missing() {
+      let method = ArrayMethod::new(
+      "subst", "[]", 
+      Pattern::Whitespace, 
+      None
+    );
+    assert!(method.handle_as_array(&mut DummyExpander).is_err());
+}
+...

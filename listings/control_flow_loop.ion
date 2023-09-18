@@ -1,0 +1,9 @@
+let value = "one two three four"
+for element in @split(value)
+    echo $element
+end
+let value = 0
+while test $value -lt 6
+    echo $value
+    let value += 1
+end

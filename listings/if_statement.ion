@@ -1,0 +1,13 @@
+let foo = "foo"
+if test "foo" = $foo
+    echo "Found foo"
+else if matches $foo '[A-Ma-m]\w+'
+    echo "we found a word that starts with A-M"
+    if not matches $foo '[A]'
+        echo "The word doesn't start with A"
+    else
+        echo "The word starts with 'A'"
+    end
+else
+    echo "Incompatible word found"
+end 

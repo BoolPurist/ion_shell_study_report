@@ -22,16 +22,20 @@ Ion Shell on the other hand works in structural typing.
 A certain section of the online manual of Ion Shell lists all possible types \cite{ion_shell_types}.
 Form this reference we conclude that Ion shell has following primitive types:
 
-- str
-- bool
-- int
-- float
+\begin{itemize}
+	\item str
+	\item bool
+	\item int
+	\item float
+\end{itemize}
 
 And also provides these structural typing via:
 
-- Array:
-- Hashmap:
-- Btreemap:
+\begin{itemize}
+	\item Array
+	\item Hashmap
+	\item Btreemap
+\end{itemize}
 
 Working with these types instead of just text provides a better detection of programming errors.
 Since Ion Shell is interpreted statement by statement, these errors are caught at runtime though.
@@ -39,18 +43,38 @@ Since Ion Shell is interpreted statement by statement, these errors are caught a
 It is important to note there is no nominal typing in Ion Shell.
 Formal Declaration of objects or structs with named fields is not possible like in other programming languages like Rust, Java, C\# etc ..
 
-To better illustrate how scripting in Ion Shell looks like, a few core features are explained with code snippet as examples.
+To better illustrate how scripting in Ion Shell looks like, a few core features are explained
+with code snippet as examples in next subsections within this chapter.
+
+\clearpage
 
 \subsection{Expansion}\label{ion_shell_lang_expansion}
 
 Ion Shell also supports expansion functionallity.
+This features allows to replace text with other values. or other expression with
+Most of time expansions are prepended with a sigil.
+A sigil is a character which signifies which type a resovled value is of.
+For instance this allows resolve the variable name to its respective value, see code snippet
+on \ref{code:ion_expansion_snippet} at the line \ref{code:ion_line_string_expansion}.
+Here the sigil "\$" is used to expand a reference to a string value.
+At line \ref{code:ion_line_array_expansion} in the snippet \ref{code:ion_expansion_snippet}
+there is a showcase of the expansion of a variable to an array via the sigil "@".
+These two examples demonstrates that Ion Shell differenciate between strings and array.
+The brace expansion feature is illustrated at line within the snippet.
+Ion Shell enables conducting math via the arthimetic expansions,
+starting from line \ref{code:ion_line_arithmetic_expasion} in the code listing \ref{code:ion_expansion_snippet} shows how arthimetic is performed.
+
+\ionCode{expansion_ion_shell}{code:ion_expansion_snippet}{ion_manual_variable_expansion}{Expansion of variables}
+
+\clearpage
 
 \subsection{String and array methods}\label{ion_shell_lang_methods}
 
-There are builtin utility functions avaible for scripting  called methods.
+There are builtin utility functions avaible for scripting called methods.
+According to the Ion manual methods are a subset of the expansion feature of Ion Shell.
 There are 2 kinds of methods.
 The kind of method is determined by the type of the return value.
-Every kind of method is prepended with its own sigil
+Every kind of method is prepended with its own sigil.
 
 \begin{itemize}
 	\item String methods. Prepended with a "\$" sigil. Returns a string. See \ref{code:ion_string_methods} as an example.
@@ -60,5 +84,21 @@ Every kind of method is prepended with its own sigil
 \ionCode{methods_ion_array_shell}{code:ion_string_methods}{ion_manual_string_methods}{Example of a string method}
 \ionCode{methods_ion_string_shell}{code:ion_array_methods}{ion_manual_array_methods}{Example of a array method}
 
+\clearpage
+
 \subsection{Control Flow}\label{ion_shell_lang_control_flow}
+
+Ion Shell offers control flows to give conditional and repeated execution of statements.
+The syntax of control flows resembles the syntax of Rust to a certain degree.
+There are three kinds of control flow:
+
+\begin{itemize}
+	\item Conditional execution by if statement. Example: \ref{code:ion_control_flow_if}.
+	\item Repeated execution via while or for loops Example: \ref{code:ion_control_flow_loop}.
+	\item Value matching through matches statements. Example: \ref{code:ion_control_flow_matches}.
+\end{itemize}
+
+\ionCode{if_statement}{code:ion_control_flow_if}{ion_manual_control_flow_if}{Showcase of if statements in the Ion Shell}
+\ionCode{control_flow_loop}{code:ion_control_flow_loop}{ion_manual_control_flow_loop}{Showcase of loop in the Ion Shell}
+\ionCode{control_flow_matches}{code:ion_control_flow_matches}{ion_manual_control_flow_switch}{Showcase of switch matches in the Ion Shell}
 

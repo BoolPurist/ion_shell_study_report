@@ -3,30 +3,41 @@
 \section{Finding areas for contribution}
 
 With the goal to contribute to Ion shell during the period of the it project, the possible bug fixes/features needed to be determined first.
-The following activities were undertaken to find out concrete tasks to accomplish:
+The following activities were undertaken to find out concrete tasks to find out development goals:
 
-- Going through the online manual of Ion Shell.
-- Reading posted issues on the GitLab Repository of Ion shell.
+\begin{itemize}
+	\item Going through the online manual of Ion Shell.
+	\item Reading posted issues on the GitLab Repository of Ion shell.
+	\item Explore scripting of Ion Shell.
+\end{itemize}
 
 The online manual of the shell is meant for the users of the application.
 It focuses on the following points:
 
-- What and how something can be done in an interactive session.
-- Features of the scripting language.
-- Philosophy the application. Why does it exits and what it is supposed to be.
+\begin{itemize}
+	\item What and how something can be done in an interactive session.
+	\item Features of the scripting language.
+	\item Philosophy the application. Why does it exits and what it is supposed to be.
+\end{itemize}
 
+Ion manual is build by the program of the rust progrom mdBook, \cite{mdBook}, which converts markdown file into folder of
+HTML, CSS and JavaScript files for hosting a documentation as a website.
 Investigating the online manual of Ion shell provided the overview of already implemented features and how the shell was meant to be used.
 While reading the manual, it became clear that the documentation lacked explanations in certain areas.
 Later on additions to the documentation were also required for new implemented features in Ion Shell.
 Because of this the manual presents one of the fields in Ion shell for contribution.
-
 Another important source for the deduction of tasks is the collection of issues and pending pull requests from a repository.
-This investigation yielded a number of goals to undertake.
-However it also pointed out that the development of this project stagnated for a while.
-Over the course of the it project I would be the only contributor, most of time.
 
-\section{Automated testing of features}
+\section{Programming in general}
 
+The whole program is developed in the Rust programming language like the wholw ecosystem of Redox os.
+Beside the Rust, knoweldge about MakeFile proved invaluable to understand the test suite and
+allowed to add more capability of running only one specific interrogation test \cite{}.
+
+
+\section{Verification of bug fixes and implementation via automated testing of features}\label{impl:integration_test}
+
+The main way to verify the working of features and bug fixes is the usage of unit tests and integration tests.
 Unit tests and integration tests are the 2 forms of tests used to verify the functionality of the shell.
 The observation of the code base suggests that the first form as unit tests are mainly used to inspect the correctness of tokenisation, parsing and
 evaluation of the builtin functions of the shell in isolation.
@@ -36,11 +47,11 @@ This is typical in the Rust language because unit tests are often in the childre
 Visibility in Rust enables code in a children module to have full access to all functionality in a parent module.
 This allows to test private functions in Rust easily \cite{rust_testing_private_function}.
 
-Integration tests vary depending on the kind of application.
+Integration tests depend on the kind of application.
 Ion shell's approach to integration test is the execution of script files
 and comparing the output to text files which contain the expected output for the test.
-These testing does therefore focus on the scripting aspect of the shell.
-Especially this kind of testing is valued highly according to the Contributing Guidelines of this porject \cite{ion_shell_contributing}.
+This kind of integration test therefore focuses on the scripting aspect of the shell.
+Especially this kind of testing is valued highly according to the Contributing Guidelines of this project \cite{ion_shell_contributing}.
 Since rust does not provide a builtin way to perform these kinds of tests,
 a rather complex bash script was written to orchestrate this kind of integration tests.
 Before this it project there was no explanation of how these new integration tests are executed and how they should be written.
@@ -53,15 +64,18 @@ This will hopefully reduce the learning effort for future contributors in the ar
 
 \subsection{Implementing an array method in Ion Shell}
 
-The feature Parameter Substitution via the array method "subst" ought to represent in the development work in Ion Shell.
+The implementation of the feature of the method "subst" ought to represent in the development work in Ion Shell.
+This method allows to provide a default value for an empty array.
 The following tasks were performed to archive the implementation:
 
-- Determine the desired behaviour of the array method.
-- Create a test to verify the functionality of the implementation.
-- Implement the method in Ion shell.
-- Document this feature in the online manual of Ion shell.
+\begin{itemize}
+	\item Determine the desired behaviour of the array method.
+	\item Create a test to verify the functionality of the implementation.
+	\item Implement the method in Ion shell.
+	\item Document this feature in the online manual of Ion shell.
+\end{itemize}
 
-The implementation was proposed and merged under the Pull Request \cite{pr_subst_method}.
+In the end the implementation was proposed and merged under the following pull request \cite{pr_subst_method}.
 
 \subsubsection{Finding out the desired behaviour of "subst"}
 
@@ -87,32 +101,22 @@ This text file describes the expected output of the execution of the ion test fi
 For this implementation there is the file "subst.ion" and "subst.out"
 where "subst" is the name of the test. Both file must share the same base file name, here "subst".
 
-The code snippet 1.1 represents the test code.
+The code snippet \ref{code:subst_test} represents the test code and should
+produce the following expected output \ref{code:subst_test_out}.
 
-\begin{lstlisting}[language=sh,caption={integration test for subst method. Source: \cite{ion_shell_subst_ion_test}},captionpos=b]
+In additions to the integration tests unit tests were put in place to verify the finer details of the implementation.
+Every unit test is presented as function annotated with "\#[test]" in the code snippet \ref{code:unit_test_subst}.
 
-let array = []
+\ionCode{subst_test}{code:subst_test}{ion_shell_subst_ion_test}{Ion shell script for testing implementation of subst method}
+\ionCode{subst_out}{code:subst_test_out}{ion_shell_subst_ion_test_out}{Expected output of executed test script for subst \ref{code:subst_test}.}
 
-# Inline array in the method
-echo @subst(@array [foo bar])
-
-# single value
-echo @subst(@array [baz])
-
-# variable expansion
-let default = [foobar]
-echo @subst(@array @default)
-
-# method would not trigger
-let array ++= faz
-echo @subst(@array @default)
-
-for number in  @subst([] [2 3])
-  echo $number
-end
-
-\end{lstlisting}
+\rustCode{unit_test_subst}{code:unit_test_subst}{pr_subst_method}{Unit test for the implementation of the method "subst".}
 
 \subsection{Implementation of "subst"}
 
-\subsection{Documentationa of "subst"}
+After settling goals and the verification of the implementation it is time make this feature a reality via Rust code.
+
+\subsection{Documentation of "subst"}
+
+After the implementation an explanation of this method was noted down in array method section of the Ion Shell manual \cite{ion_manual_array_methods}.
+

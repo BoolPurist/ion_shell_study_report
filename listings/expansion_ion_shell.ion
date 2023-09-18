@@ -1,6 +1,6 @@
 # String expansion
 let string = "example string"
-echo $string
+echo $string (*\label{code:ion_line_string_expansion}*) 
 echo $string:$string
 # Output
 # example string
@@ -8,7 +8,7 @@ echo $string:$string
 
 # Arrays are with an different sigil expaneded "@" instead of "$"
 let array = [one two three]
-echo @array
+echo @array (*\label{code:ion_line_array_expansion}*) 
 # Output
 # one two three
 
@@ -33,6 +33,6 @@ echo {d...a}
 
 # Arithmetic Expansion
 # Addtion
-echo $((a + b))
+echo $((a + b)) (*\label{code:ion_line_arithmetic_expasion}*) 
 # Raising to power of 2
 echo $((a ** 2))
