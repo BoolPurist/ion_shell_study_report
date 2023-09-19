@@ -1,0 +1,47 @@
+fn subst<E: Expander>(&self, expand_func: &mut E) 
+    -> Result<Args, Error<E::Error>> { (*\label{code:subst_return_type}*)
+    let variable = self.resolve_var(expand_func)?;
+    if !is_array_expression(&self.variable) { (*\label{code:subst_start_validate}*)
+        return Err(MethodError::WrongArgument( (*\label{code:subst_err_1}*)
+            stringify!(subst),
+            "1. argument must be an array",
+        )
+        .into());
+    }
+    let default_over_empty = match self.pattern {
+        Pattern::StringPattern(pattern) => {
+            if !is_array_expression(pattern) {
+                return Err(MethodError::WrongArgument( (*\label{code:subst_err_2}*)
+                    stringify!(subst),
+                    "2. argument must be an array",
+                )
+                .into());
+            }
+            Self::resolve_arg_array(expand_func, pattern)
+        }
+        Pattern::Whitespace => {
+            Err(MethodError::WrongArgument( (*\label{code:subst_err_3}*)
+                   stringify!(subst), 
+                  "requires a 2. argument").into()
+              )
+        }
+    }?; (*\label{code:subst_end_validate}*)
+    let elements = variable.split(char::is_whitespace);
+    let array = expand_func.slice_array(
+      elements, 
+      &self.selection
+    )?;
+    if array.is_empty() (*\label{code:subst_success_start}*)
+        // returned slice_array array can still 
+        // have one element with nothing it even the
+        // variable was an empty array.
+        || array.get(0)
+          .expect(
+              "Unexpected: array was checked if it was empty"
+            ).is_empty()
+    {
+        Ok(default_over_empty) (*\label{code:subst_return_success_2}*)
+    } else {
+        Ok(array) (*\label{code:subst_return_success_1}*)
+    } (*\label{code:subst_success_end}*)
+}

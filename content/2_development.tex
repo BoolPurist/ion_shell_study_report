@@ -26,14 +26,15 @@ Investigating the online manual of Ion shell provided the overview of already im
 While reading the manual, it became clear that the documentation lacked explanations in certain areas.
 Later on additions to the documentation were also required for new implemented features in Ion Shell.
 Because of this the manual presents one of the fields in Ion shell for contribution.
-Another important source for the deduction of tasks is the collection of issues and pending pull requests from a repository.
+Another important source for the deduction of tasks was the collection of issues and pending pull requests from a repository.
 
-\section{Programming in general}
+\section{Used programming languages}
 
-The whole program is developed in the Rust programming language like the wholw ecosystem of Redox os.
-Beside the Rust, knoweldge about MakeFile proved invaluable to understand the test suite and
-allowed to add more capability of running only one specific interrogation test \cite{}.
-
+The whole program is developed in the Rust programming language like the whole ecosystem of Redox os.
+Beside the Rust, knoweldge about Make files proved invaluable to understand the working of the integration tests and
+allowed to add more capability of running only one specific interrogation test, accomplished by the pull request \cite{pr_single_test_selectable}.
+The mastering of the scripting language of Ion Shell was vital too. Without it I could have not found out the correct behaviour
+which is to be archieved after a bug fix or feature implemantation.
 
 \section{Verification of bug fixes and implementation via automated testing of features}\label{impl:integration_test}
 
@@ -77,7 +78,7 @@ The following tasks were performed to archive the implementation:
 
 In the end the implementation was proposed and merged under the following pull request \cite{pr_subst_method}.
 
-\subsubsection{Finding out the desired behaviour of "subst"}
+\subsubsection{Finding out the desired behaviour of "subst"}\label{subst_desired_behaviour}
 
 This feature was requested in an issue a certain while ago \cite{ion_shell_subst_issue}.
 In this issue the specifics of behaviour of this array method have already been discussed too.
@@ -115,8 +116,42 @@ Every unit test is presented as function annotated with "\#[test]" in the code s
 \subsection{Implementation of "subst"}
 
 After settling goals and the verification of the implementation it is time make this feature a reality via Rust code.
+The implementation of the method is contained the function shown in \ref{code:array_method_impl}.
+The first part of the function validates if the first and second argument are of type array,
+from line \ref{code:subst_start_validate} to line \ref{code:subst_end_validate}.
+This validation ensures that an error is returned if the user violates the conditions which were lay out, see \ref{subst_desired_behaviour} section.
+Errors in Rust are propagated by value rather than exceptions. This is done via the generic enum type Result<T, E> where T is the type of the value in the successful case
+and E is the type of value which communicates what went wrong in case of error.
+A functions therefore declares via its return type of the enum Result<T, E> that it can fail, line \ref{code:subst_return_type}.
+Within the code section for validating the arguments, the function returns Err variants, case of the violation of the stated conditions
+\ref{subst_desired_behaviour}, at several places, at line \ref{code:subst_err_1}, \ref{code:subst_err_2} and \ref{code:subst_err_3}.
+There is another spot where an error is returned. This spot can be found by the "?" character which signifies that if an error is given,
+then propagate this error to the caller of the function at line \ref{code:subst_end_validate}.
+This propagation equals a rethrowing of an exception in C\#:
+
+\begin{verbatim}
+	try {
+		var array = expand_func.slice_array(elements, this.selection);
+	} catch(Exception e) {
+		throw e;
+	}
+\end{verbatim}
+
+Between line \ref{code:subst_success_start} and line \ref{code:subst_success_end} the success case is performed by returning the first argument back if it is not empty, line \ref{code:subst_return_success_1}.
+The second one is returned only if the first one is an empty array, line \ref{code:subst_return_success_2}.
+
+\rustCode{array_method_impl}{code:array_method_impl}{pr_subst_method}{Function which implements the subst method}
 
 \subsection{Documentation of "subst"}
 
 After the implementation an explanation of this method was noted down in array method section of the Ion Shell manual \cite{ion_manual_array_methods}.
+This documentation covers the following aspects:
+\begin{enumerate}
+	\item What does it do.
+	\item What is expected of the provided arguments and when an error is raised.
+	\item Example of the usage with an expected output.
+\end{enumerate}
+
+The first and second point are communicating the established conditions the functions expects to be called, shown at \ref{subst_desired_behaviour}.
+
 
