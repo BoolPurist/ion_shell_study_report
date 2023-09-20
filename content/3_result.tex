@@ -96,7 +96,6 @@ Beside causing more work for the reviewer, it also can hinder the confidence of 
 I tried communicating this problem via following issues .. .
 In addition I talked to the community about this on the matrix server on several occasions.
 
-
 \section{What is left to do in Ion Shell}
 
 This section describes which goals for the it project could not be archived.
@@ -129,26 +128,48 @@ The following merged pull requests of mine were focused on that areas:
 
 Another aspect of missing information for error messages was the source location where an error was encountered.
 The source location is the respective line and column number.
-The source location in an error message as a feature were noted down in an still opened issue \cite{issue_enrich_error_message_information}.
+The source location in an error message as a feature were noted down in an still opened issue \cite{issue_enrich_error_message_information} .
+It was my indentation to add the source location to a raised error message.
+In the end of the it project I was not able to do so though.
 The parser of ion shell does not keep track of line and columns numbers for statements.
 Because of this, one can not simply incorporate the source location into the error messages.
 
 A workaround was attempted via counting at least the line numbers per executed statement.
-There is a for loop, see code snippet \ref{code:execution_for_code_snippet} at line \ref{code:execute_loop},
-which terminates, parses and executes statements one by one.
-This workaround could at least provide the line number of the source location.
+There is a for loop, see code snippet \ref{code:execution_for_code_snippet} as a simplfied and modified version,
+which terminates, parses and executes statements one by one in Ion Shell.
+In the modified version there two additional statements.
+The first addition the declaration of the line numbers to count per statement at line \ref{code:execute_loop_line_init}.
+The second addition the increment of the line numbers  per statement at line \ref{code:execute_loop_line_increment}.
+Those modifications ought to keep track of the line number of the current statement.
+
+\clearpage
+
+\rustCode{execution_loop}{code:execution_for_code_snippet}{file_ref_execute_loop}{For loop which terminates,parses and interprets statements}
+
 That attempt however did not work for all scenarios.
-In cases of calling a function in Ion Shell wrong line numbers occur however.
+In cases of calling a function the line numbers were not correct however.
 This oddity comes from the fact that statements within a function are executed in a batch.
-Let us consider the following code snippet TODO add code snippet.
-If an error occurs at line .. then the line number is 4 with the workaround because that is where the function was called.
-In addition to that the execution of builin methods do propagate their error up to the execution loop \ref{code:execution_for_code_snippet}.
-If an error happens a message is directly printed to the console via this section TODO.
+Let us consider the following ion script snippet \ref{code:function_batch_error_location}.
+If an error occurs at line \ref{code:ion_undefined_variable},
+then the line number is wrongly \ref{code:ion_print_call}
+with the workaround because counted line number refers to the function call.
+
+\clearpage
+
+\localIonCode{function_batch_error_location}{code:function_batch_error_location}{Example with undefined variable error}
+
+In addition to that the execution of string and array methods do not propagate their error up to the execution loop \ref{code:execution_for_code_snippet}.
+If an error happens, a message is directly printed to the console,
+at \ref{code:ion_file_status} on the line \ref{code:ion_status_print_err_1} or line \ref{code:ion_status_print_err_2}.
+
+Given the printing to console directly where the error is detected,
+this place of code would also need access to the source location
+or better should propagate the error the execution loop \ref{code:execution_for_code_snippet} consistently.
+
+\rustCode{status_struct}{code:ion_file_status}{ion_file_status}{How builtin method print raised errors directly to the consoel}
 
 In my view the solution is to rewrite the tokenisation and parsing in a way so that
 a token/language items are linked to its respective column and line number.
-This rewrite however requires coordination with the respository owners and significant amount of work
+This rewrite however requires coordination with the repository owners and significant amount of work
 which exceeds the available time I could afford to spend for the it project.
-
-\rustCode{execution_loop}{code:execution_for_code_snippet}{file_ref_execute_loop}{For loop which terminates,parses and interprets statements}
 

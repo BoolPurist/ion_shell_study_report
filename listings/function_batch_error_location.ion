@@ -1,0 +1,6 @@
+fn print 
+  let message = "2"
+  echo $massage (*\label{code:ion_undefined_variable}*) 
+end
+
+print (*\label{code:ion_print_call}*) 

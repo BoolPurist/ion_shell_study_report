@@ -5,17 +5,22 @@ pub fn on_command(
     set_cmd_duration: bool,
 ) -> std::result::Result<(), IonError> {
     // ... some code before 
+    // Added by workaround
+    let mut line_number: usize = 0; (*\label{code:execute_loop_line_init}*) 
     for stmt in command_to_execute.batching(
-    |cmd| Terminator::new(cmd).terminate()) { (*\label{code:execute_loop}*) 
+        |cmd| 
+        Terminator::new(cmd).terminate()) { (*\label{code:execute_loop}*) 
         // Go through all of the statements and build up 
         // the block stack
         // When block is done return statement for execution.
         for statement in StatementSplitter::new(&stmt) { 
+            // Added by workaround
+            line_number += 1; (*\label{code:execute_loop_line_increment}*) 
             let statement = parse_and_validate(statement?)?;
             if let Some(stm) = Self::insert_statement(
-              &mut self.flow_control, statement
+                  &mut self.flow_control, statement
               )? {
-                self.execute_statement(&stm)?; 
+                  self.execute_statement(&stm)?; 
             }
         }
     }

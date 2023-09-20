@@ -1,0 +1,25 @@
+/// The exit status of a command
+///
+/// Provides some helpers for defining 
+/// builtins like error messages and semantic constants
+#[derive(Clone, Copy, PartialEq, Eq, Hash, Debug, Default)]
+pub struct Status(i32);
+impl Status {
+    // ... other declarations
+    /// A generic error occured. Prints an helper text
+    pub fn error<T: AsRef<str>>(err: T) -> Self {
+        let err = err.as_ref();
+        if !err.is_empty() {
+            eprintln!("{}", err); (*\label{code:ion_status_print_err_1}*) 
+        }
+        Self(1)
+    }
+    /// Wrong arguments submitted to the builtin
+    pub fn bad_argument<T: AsRef<str>>(err: T) -> Self {
+        let err = err.as_ref();
+        if !err.is_empty() {
+            eprintln!("{}", err); (*\label{code:ion_status_print_err_2}*) 
+        }
+        Self(2)
+    // ... other declarations
+}
