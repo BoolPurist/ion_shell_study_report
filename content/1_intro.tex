@@ -1,10 +1,8 @@
-\chapter{Introtuction}\label{ch:intro}
-
-\section{What is Ion Shell}
+\chapter{What is Ion Shell}\label{ch:intro}
 
 Ion Shell is a program written in rust.
-It is maintained on a git repository on the gitlab server for redox os ecosystem \cite{ion_shell}.
-It is a shell which executes commands within a terminal emulator via read evaluation loop.
+It is maintained on a remote git repository on the GitLab server for Redox ecosystem \cite{ion_shell}.
+It is a shell which executes commands within a terminal emulator via a read evaluation loop.
 Like other shells, Ion Shell also allows the execution of scripts in its own language.
 It serves as the default shell on redox os.
 As moment of writing ion shell can also be used on Linux.
@@ -15,7 +13,7 @@ The work which was performed during the it project resolved mainly around the sc
 Because of this the scripting language of Ion Shell is introduced in more details as a preamble.
 To better illustrate certain aspect of scripting with this shell, certain differences between It and bash are discussed.
 
-\subsection{Typing in Ion Shell}
+\section{Typing in Ion Shell}
 
 As an example Bash only operates on text and does have not have concept of types.
 Ion Shell on the other hand works in structural typing.
@@ -48,7 +46,7 @@ with code snippet as examples in next subsections within this chapter.
 
 \clearpage
 
-\subsection{Expansion}\label{ion_shell_lang_expansion}
+\section{Expansion}\label{ion_shell_lang_expansion}
 
 Ion Shell also supports expansion functionallity.
 This features allows to replace text with other values. or other expression with
@@ -68,7 +66,7 @@ starting from line \ref{code:ion_line_arithmetic_expasion} in the code listing \
 
 \clearpage
 
-\subsection{String and array methods}\label{ion_shell_lang_methods}
+\section{String and array methods}\label{ion_shell_lang_methods}
 
 There are builtin utility functions avaible for scripting called methods.
 According to the Ion manual methods are a subset of the expansion feature of Ion Shell.
@@ -86,7 +84,7 @@ Every kind of method is prepended with its own sigil.
 
 \clearpage
 
-\subsection{Control Flow}\label{ion_shell_lang_control_flow}
+\section{Control Flow}\label{ion_shell_lang_control_flow}
 
 Ion Shell offers control flows to give conditional and repeated execution of statements.
 The syntax of control flows resembles the syntax of Rust to a certain degree.

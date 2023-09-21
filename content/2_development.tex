@@ -1,13 +1,15 @@
 \chapter{Development in Ion Shell}
 
-\section{Finding areas for contribution}
+\section{Reading up on and becoming acquainted with Ion Shell}
 
-With the goal to contribute to Ion shell during the period of the it project, the possible bug fixes/features needed to be determined first.
-The following activities were undertaken to find out concrete tasks to find out development goals:
+Before contributing, knowledge and a certain understanding of Ion Shell and Redox Ox needed to be obtained.
+The following activities were undertaken to get ready for development in Ion Shell:
 
 \begin{itemize}
-	\item Going through the online manual of Ion Shell.
+	\item Reading the Redox Os book \cite{redox_os_book}.
+	\item Going through the online manual of Ion Shell \cite{ion_manual_instroduction}.
 	\item Reading posted issues on the GitLab Repository of Ion shell.
+	\item Reading the contribution guideline of Ion Shell \cite{ion_shell_contributing}.
 	\item Explore scripting of Ion Shell.
 \end{itemize}
 
@@ -15,30 +17,42 @@ The online manual of the shell is meant for the users of the application.
 It focuses on the following points:
 
 \begin{itemize}
+	\item Features of the scripting language of Ion Shell.
 	\item What and how something can be done in an interactive session.
-	\item Features of the scripting language.
-	\item Philosophy the application. Why does it exits and what it is supposed to be.
+	\item Philosophy the application. Why does it exist and what it is supposed to be.
 \end{itemize}
 
-Ion manual is build by the program of the rust progrom mdBook, \cite{mdBook}, which converts markdown file into folder of
+Ion manual is build by the program of the rust program mdBook, \cite{mdBook}, which converts markdown file into folder of
 HTML, CSS and JavaScript files for hosting a documentation as a website.
-Investigating the online manual of Ion shell provided the overview of already implemented features and how the shell was meant to be used.
+Investigating the online manual of Ion shell provided the overview of already implemented features and
+how the shell was meant to be used.
 While reading the manual, it became clear that the documentation lacked explanations in certain areas.
 Later on additions to the documentation were also required for new implemented features in Ion Shell.
-Because of this the manual presents one of the fields in Ion shell for contribution.
-Another important source for the deduction of tasks was the collection of issues and pending pull requests from a repository.
+Ion shell's manual inevitably became one of the fields for contribution.
+Another important source for the deduction of tasks was the
+collection of issues and pending pull requests from Ion shell's repository.
+Over the course of the it project general knowledge
+about Redox OS was extracted from the official redox OS book \cite{redox_os_book}.
+The good practices for development were derived from the Contributing markdown file of the Ion Shell repository \cite{ion_shell_contributing}.
 
-\section{Used programming languages}
+\section{Development in general}
 
 The whole program is developed in the Rust programming language like the whole ecosystem of Redox os.
-Beside the Rust, knoweldge about Make files proved invaluable to understand the working of the integration tests and
+Beside the Rust, knowledge about Make files proved invaluable to understand the working of the integration tests and
 allowed to add more capability of running only one specific interrogation test, accomplished by the pull request \cite{pr_single_test_selectable}.
 The mastering of the scripting language of Ion Shell was vital too. Without it I could have not found out the correct behaviour
-which is to be archieved after a bug fix or feature implemantation.
+which is to be achieved after a bug fix or feature implementation.
+
+The communication with redox OS community were done by a matrix sever \cite{matrix_channel}.
+As contributor to Ion Shell I forked the Ion Shell repository and developed on this fork.
+Once a change to the code base was ready to be merged,
+I prepared the pull request,
+according to the official redox OS guideline about pull requests \cite{redox_pr_guideline}.
+
 
 \section{Verification of bug fixes and implementation via automated testing of features}\label{impl:integration_test}
 
-The main way to verify the working of features and bug fixes is the usage of unit tests and integration tests.
+The main way to verify correctness of features and bug fixes is the usage of unit tests and integration tests.
 Unit tests and integration tests are the 2 forms of tests used to verify the functionality of the shell.
 The observation of the code base suggests that the first form as unit tests are mainly used to inspect the correctness of tokenisation, parsing and
 evaluation of the builtin functions of the shell in isolation.
