@@ -108,8 +108,9 @@ The description also contains the reasons why a goal could be accomplished.
 
 \begin{itemize}
 	\item Incorporate the source location, (file name, line number, column number) into the error message.
-	\item Implement wild card expansion for various schemes like disk ..
+	\item Implement wild card expansion for various schemes like disk.
 	\item Make the CI work on all jobs possible.
+	\item Migration from Makefiles/Bash to cargo-xtask automation.
 \end{itemize}
 
 The following bullet points were non-goals during the it-project. Nonetheless they were identified as worthwhile endeavours.
@@ -222,36 +223,35 @@ The problem caused by that are described in \ref{section:ci_ion_shell}.
 
 \subsection{Porting to windows}
 
-According to a page of Ion manual a port to windows is desired \cite{ion_manual_instroduction}.
+A port to windows is desired \cite{ion_manual_instroduction} according to a page of Ion manual.
 This port could indeed increase the number of users since windows
-as an OS has a large user base in the desktop realm.
+as an OS has a large user base in the realm of desktop computers.
 
 \subsection{Migration from Makefiles/Bash to cargo-xtask automation}
 
-While cargo for Rust simplifies compiling and running of rust programs,
-task like running the test suit or building the ion manual are however project specific.
+While cargo for Rust simplifies the compiling and running of rust programs,
+task like running the test suit or building the ion manual are however project specific tasks.
 Specific project task are done by Bash scripts and Make files within the Ion Shell repository.
 As pointed out in a posted issue \cite{issue_convert_make_files_to_xtask},
 this approach does not scale well on the long run.
-This issues proposed the usage of the cargo-xtask convention instead of Make files and bash scripts.
+This issues proposed the usage of the cargo-xtask convention instead of Make files and Bash scripts.
 Cargo-xtask is a convention in which the workspace feature of cargo is utilized \cite{repos_cargo_xtask}.
 Via this workflow it is possible to write project tasks in Rust.
-The following advantages arise from this convention:
+The following advantages arise if this convention is applied:
 \begin{itemize}
 	\item Rust scales better for complex problems compared to Bash.
 	\item Only one language in the project for the application and for the automation system.
 	\item People do not need to learn another stack beside Rust.
 	\item Rust has powerful crates for cli argument parsing. Their Capabilities out match getopts from bash greatly
-	\item It is advantageous to get rid of make and bash for a latter windows port.
+	\item It is advantageous for a latter windows port.
 \end{itemize}
 
-After the discussion on the matrix server with community of Redox OS and under the respective issue
-\cite{issue_convert_make_files_to_xtask}, it was agreed to try the conversion.
+After the discussion with community of Redox OS on the matrix server and under the respective issue
+\cite{issue_convert_make_files_to_xtask}, it was agreed to attempt the conversion.
 The conversion to cargo-xtask was started with the following pull request \cite{pr_still_opened_cargo_xtask}.
 This pull request is the first of three planned pull requests for the conversion.
 That strategy allows to conduct the conversion step by step
-However the first pull request is not  merged yet,
-even after asking for a review on this pull request several times.
-
+However the first pull request is not merged yet.
+No review has taken place so far even after for a review on this pull request several times.
 
 
