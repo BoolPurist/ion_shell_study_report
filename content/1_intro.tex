@@ -1,22 +1,22 @@
 \chapter{What is Ion Shell}\label{ch:intro}
 
 Ion Shell is a program written in rust.
-It is maintained on a remote git repository on the GitLab server for Redox ecosystem \cite{ion_shell}.
+It is maintained on a remote git repository on the GitLab server of Redox ecosystem \cite{ion_shell}.
 It is a shell which executes commands within a terminal emulator via a read evaluation loop.
 Like other shells, Ion Shell also allows the execution of scripts in its own language.
-It serves as the default shell on redox os.
-As moment of writing ion shell can also be used on Linux.
-This shell is interpreted statement by statement.
+It serves as the default shell on Redox OS.
 There is an online manual for the usage of ion shell available \cite{ion_shell_online_manual}.
+As moment of writing Ion Shell can also be used on Linux.
+According to Ion Shell manual it could also be used for other unix like systems \cite{ion_shell_online_manual}.
+This shell is interpreted statement by statement.
 
 The work which was performed during the it project resolved mainly around the scripting aspect of Ion Shell.
-Because of this the scripting language of Ion Shell is introduced in more details as a preamble.
-To better illustrate certain aspect of scripting with this shell, certain differences between It and bash are discussed.
+Because of this the scripting language of Ion Shell is introduced in more details as a preamble for this report.
 
 \section{Typing in Ion Shell}
 
 As an example Bash only operates on text and does have not have concept of types.
-Ion Shell on the other hand works in structural typing.
+Ion Shell on the other hand operates via structural typing.
 A certain section of the online manual of Ion Shell lists all possible types \cite{ion_shell_types}.
 Form this reference we conclude that Ion shell has following primitive types:
 
@@ -27,7 +27,7 @@ Form this reference we conclude that Ion shell has following primitive types:
 	\item float
 \end{itemize}
 
-And also provides these structural typing via:
+And also provides these additional types which allow the composition of primitive values:
 
 \begin{itemize}
 	\item Array
@@ -39,28 +39,29 @@ Working with these types instead of just text provides a better detection of pro
 Since Ion Shell is interpreted statement by statement, these errors are caught at runtime though.
 
 It is important to note there is no nominal typing in Ion Shell.
-Formal Declaration of objects or structs with named fields is not possible like in other programming languages like Rust, Java, C\# etc ..
+Formal Declaration of objects or structs with named fields is not possible like in other programming languages like Rust, Java, C\#, etc.
 
 To better illustrate how scripting in Ion Shell looks like, a few core features are explained
-with code snippet as examples in next subsections within this chapter.
+with code snippet as examples.
 
 \clearpage
 
 \section{Expansion}\label{ion_shell_lang_expansion}
 
-Ion Shell also supports expansion functionallity.
-This features allows to replace text with other values. or other expression with
-Most of time expansions are prepended with a sigil.
+Ion Shell also supports expansion functionality.
+This features allows to replace text with other values.
+Most of time expansions are prepended with a sigil in Ion Shell.
 A sigil is a character which signifies which type a resovled value is of.
-For instance this allows resolve the variable name to its respective value, see code snippet
+For instance this allows to resolve the variable name to its respective value, see code snippet
 on \ref{code:ion_expansion_snippet} at the line \ref{code:ion_line_string_expansion}.
 Here the sigil "\$" is used to expand a reference to a string value.
 At line \ref{code:ion_line_array_expansion} in the snippet \ref{code:ion_expansion_snippet}
-there is a showcase of the expansion of a variable to an array via the sigil "@".
-These two examples demonstrates that Ion Shell differenciate between strings and array.
-The brace expansion feature is illustrated at line within the snippet.
-Ion Shell enables conducting math via the arthimetic expansions,
-starting from line \ref{code:ion_line_arithmetic_expasion} in the code listing \ref{code:ion_expansion_snippet} shows how arthimetic is performed.
+there is a showcase of the expansion of a variable to an array value via the sigil "@".
+These two examples demonstrates that Ion Shell differentiate between string and array values.
+The brace expansion is illustrated between the lines \ref{code:ion_expansion_start} and \ref{code:ion_expansion_end}
+within the snippet \ref{code:ion_expansion_snippet}.
+Ion Shell enables conducting math via the arithmetic expansions too,
+How this kind of expansion is applied is demonstrated from the line \ref{code:ion_line_arithmetic_expasion} on.
 
 \ionCode{expansion_ion_shell}{code:ion_expansion_snippet}{ion_manual_variable_expansion}{Expansion of variables}
 
@@ -68,8 +69,8 @@ starting from line \ref{code:ion_line_arithmetic_expasion} in the code listing \
 
 \section{String and array methods}\label{ion_shell_lang_methods}
 
-There are builtin utility functions avaible for scripting called methods.
-According to the Ion manual methods are a subset of the expansion feature of Ion Shell.
+There are builtin utility functions, called methods, available for scripting.
+According to the Ion Shell manual methods are a subset of the expansion feature.
 There are 2 kinds of methods.
 The kind of method is determined by the type of the return value.
 Every kind of method is prepended with its own sigil.
@@ -79,24 +80,28 @@ Every kind of method is prepended with its own sigil.
 	\item Array methods. Prepended with a "@" sigil. Returns an array. See \ref{code:ion_array_methods} as an example.
 \end{itemize}
 
-\ionCode{methods_ion_array_shell}{code:ion_string_methods}{ion_manual_string_methods}{Example of a string method}
-\ionCode{methods_ion_string_shell}{code:ion_array_methods}{ion_manual_array_methods}{Example of a array method}
+\ionCode{methods_ion_array_shell}{code:ion_array_methods}{ion_manual_string_methods}{Example of a array method}
+\ionCode{methods_ion_string_shell}{code:ion_string_methods}{ion_manual_array_methods}{Example of a string method}
 
 \clearpage
 
 \section{Control Flow}\label{ion_shell_lang_control_flow}
 
-Ion Shell offers control flows to give conditional and repeated execution of statements.
-The syntax of control flows resembles the syntax of Rust to a certain degree.
-There are three kinds of control flow:
+Ion Shell offers language features to control the flow of execution.
+This allows for conditional and repeated execution of statements.
+The syntax of control flow resembles the syntax of Rust to a certain degree.
+There are three kinds of control flow mechanism:
 
 \begin{itemize}
-	\item Conditional execution by if statement. Example: \ref{code:ion_control_flow_if}.
-	\item Repeated execution via while or for loops Example: \ref{code:ion_control_flow_loop}.
-	\item Value matching through matches statements. Example: \ref{code:ion_control_flow_matches}.
+	\item Conditional execution by a if statement. Example: \ref{code:ion_control_flow_if}.
+	\item Repeated execution via a while or for loop. Example: \ref{code:ion_control_flow_loop}.
+	\item Value matching through matches. Example: \ref{code:ion_control_flow_matches}.
 \end{itemize}
 
 \ionCode{if_statement}{code:ion_control_flow_if}{ion_manual_control_flow_if}{Showcase of if statements in the Ion Shell}
+
+\clearpage
+
 \ionCode{control_flow_loop}{code:ion_control_flow_loop}{ion_manual_control_flow_loop}{Showcase of loop in the Ion Shell}
 \ionCode{control_flow_matches}{code:ion_control_flow_matches}{ion_manual_control_flow_switch}{Showcase of switch matches in the Ion Shell}
 

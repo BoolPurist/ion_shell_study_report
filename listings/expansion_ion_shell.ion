@@ -13,14 +13,14 @@ echo @array (*\label{code:ion_line_array_expansion}*)
 # one two three
 
 # Brace expansion with different types
-echo {1..10}
+echo {1..10} (*\label{code:ion_expansion_start}*) 
 echo {10..1}
 echo {1...10}
 echo {10...1}
 echo {a..d}
 echo {d..a}
 echo {a...d}
-echo {d...a}
+echo {d...a} (*\label{code:ion_expansion_end}*) 
 # Output
 # 1 2 3 4 5 6 7 8 9
 # 10 9 8 7 6 5 4 3 2

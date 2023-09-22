@@ -1,7 +1,8 @@
 let bar = "bar"
 let foo = bar
 match $string
-    # if guard allows for more complex conditional logic within matching values 
+    # if guard allows for more complex conditional 
+    # logic within matching values 
     case "this" if eq $foo bar
         echo "this and foo = bar"
     case "this"
