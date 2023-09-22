@@ -1,5 +1,8 @@
 \chapter{List of development accomplishment}
 
+A list of all my opened issues and pull requests are listed to quantify the done work in Ion Shell
+during the it project.
+
 \section{Pull Requests}
 
 \subsection{Features}
@@ -8,11 +11,11 @@
 The following pull requests were merged into the code base of Ion Shell.
 
 \begin{itemize}
-	\item Implemented pipefail feature. If at least one command in pipeline returns an error, the whole pipeline returns an error.\cite{pr_pipefail}.
-	\item Improved error message for not declared variable. Now shows the name of not found variable \cite{pr_better_not_found_variable_show}.
-	\item Improved error message for invalid index. Message now shows the length of sequence where the out of bounds error occurs \cite{pr_error_message_shows_invalid_range}.
-	\item Implemented work around to make file scheme work in Ion Shell inside Redox Os \cite{pr_file_scheme}.
-	\item Implemented subst method for Ion Shell \cite{pr_subst_method}.
+	\item Implemented pipefail feature. If at least one command in the pipeline returns an error, the whole pipeline returns an error \cite{pr_pipefail}.
+	\item Improved error message for not declared variable. Now shows the name of a not found variable \cite{pr_better_not_found_variable_show}.
+	\item Improved error message for invalid index. Message now shows the length of the sequence and the invalid index \cite{pr_error_message_shows_invalid_range}.
+	\item Implemented workaround to make file scheme work in Ion Shell inside Redox OS \cite{pr_file_scheme}.
+	\item Implemented "subst" method for Ion Shell \cite{pr_subst_method}.
 \end{itemize}
 
 The following pull requests were opened but not merged into the code base of Ion Shell.
@@ -24,9 +27,9 @@ The following pull requests were opened but not merged into the code base of Ion
 \subsection{Bug fixes}\label{accomplishment_bug_fixes}
 
 \begin{itemize}
-	\item Make all buitlins of ion shell included the ion manual after building documentation \cite{pr_man_history_included_ion_manual}.
-	\item Ensured that spaces between left parentheses and the first argument does not cause an error anymore .\cite{pr_fix_space_before_first_paranthese}
-	\item Converted unguarded unsafe conversion to utf-8 string. \cite{pr_unsave_utf8_removal}
+	\item Make all buitlins and methods of Ion Shell included into the Ion Shell manual after building documentation \cite{pr_man_history_included_ion_manual}.
+	\item Ensured that spaces between left parentheses and the first argument does not cause an error anymore \cite{pr_fix_space_before_first_paranthese}.
+	\item Converted unguarded unsafe conversion to safe UTF-8 string conversion \cite{pr_unsave_utf8_removal}.
 \end{itemize}
 
 Related to \gls{redoxer}
@@ -39,9 +42,9 @@ Related to \gls{redoxer}
 \label{accomplishment_code_quality}
 
 \begin{itemize}
-	\item Scripted option to only run one selected integration test. \cite{pr_single_test_selectable}
-	\item Removed redundant, more than once, termination before tokenisation. \cite{pr_removed_redundant_termination}
-	\item Remove obsolete parameter in several functions in the parser section of Ion Shell. \cite{pr_remove_not_needed_parameter}
+	\item Added option to only run one selected integration test. \cite{pr_single_test_selectable}
+	\item Removed redundant termination before tokenisation. \cite{pr_removed_redundant_termination}
+	\item Removed obsolete parameter in several functions withing the parser section of Ion Shell. \cite{pr_remove_not_needed_parameter}
 	\item Fixing warnings by using modern API of criterion in benchmarks. \cite{pr_fix_warnings_deprecated_criterion_api}
 	\item Added unit tests for parsing let statements. \cite{pr_added_unit_test_let_grammar}
 	\item Added unit tests for terminating lines before tokenisation. \cite{pr_test_terminator_todos}
@@ -51,22 +54,22 @@ Related to \gls{redoxer}
 \subsection{Documentation}\label{accomblishment_docs}
 
 \begin{itemize}
-	\item Moved msrv from clippy file to Cargo.toml. \cite{pr_moved_msrv_to_cargo}
-	\item Documented how the documentation of builtin are generated into the Ion Shell online manual. \cite{pr_docs_how_builtin_generated}
-	\item Wrote section about how integration test work and how to write them. \cite{pr_docs_section_integraion_test}
-	\item Provided additional command for building ion manual locally. \cite{pr_docs_commands_building_ion_manual}
-	\item Fixed formatting in the builtin section of the ion manual \cite{pr_docs_fix_wrong_builtin_manual_section}
-	\item Adjusted msrv to sync it within the project \cite{pr_docs_adjust_msrv_project}
-	\item Added notes/links to ion plugin. \cite{pr_docs_ion_plugin}
-	\item Documented feature of initializing file. \cite{pr_docs_init_file}
-	\item Added output to example of creating an array withing the ion manual \cite{pr_docs_output_create_array}
-	\item Created a section about how integration tests work in Ion Shell. It also contains guides how to write integration tests for Ion Shell \cite{pr_docs_how_to_integration_test}.
+	\item Moved MSRV from clippy file to Cargo.toml. MSRV in clippy file is deprecated \cite{pr_moved_msrv_to_cargo}.
+	\item Documented how the documentation of builtin are generated into the Ion Shell online manual \cite{pr_docs_how_builtin_generated}.
+	\item Wrote section about how integration test work and how to write them \cite{pr_docs_section_integraion_test}.
+	\item Provided additional command section for building ion manual locally \cite{pr_docs_commands_building_ion_manual}.
+	\item Fixed formatting in the builtin section of the ion manual \cite{pr_docs_fix_wrong_builtin_manual_section}.
+	\item Adjusted MSRV various places of the project \cite{pr_docs_adjust_msrv_project}.
+	\item Added notes/links to ion plugin \cite{pr_docs_ion_plugin}.
+	\item Documented feature of init file. This features allows to configure the shell \cite{pr_docs_init_file}.
+	\item Added expected output to an example of creating an array withing the Ion Shell manual \cite{pr_docs_output_create_array}.
+	\item Created a section about how integration tests work in Ion Shell. It also contains an guide on how to write integration tests for Ion Shell \cite{pr_docs_how_to_integration_test}.
 \end{itemize}
 
 \subsection{Configuration}
 
 \begin{itemize}
-	\item Make Linux job work in CI and fixed version in MakeFile. \cite{pr_conf_partial_ci_fix}
+	\item Make job called "linux" work in CI and fixed version in MakeFile. \cite{pr_conf_partial_ci_fix}
 	\item Removed always overwritten test files and made it ignored in git. \cite{pr_conf_overwritten_files}
 	\item Updated section about joining the redox community on matrix server. \cite{pr_docs_update_community_links}
 
@@ -93,26 +96,26 @@ The following issues were not opened by me but resolved by me via contribution.
 	\item Feature request of new builtin method subst to allow for replacing empty arrays with an default array \cite{issue_subst_request}. Resolved by pull request \cite{pr_subst_method}.
 \end{itemize}
 
-\subsection{Opened issues}
+\subsection{Opened Issues}
 
-This issues were opened by me to report an problem. But they were not solved by me.
+This issues were opened by me to report a problem. But they were not solved by me.
 
 Related to \gls{redoxer}
 
 \begin{itemize}
 	\item Requested the rebuilding of the docker image for \gls{redoxer} so that the Ion Shell repository can be build with a new rust version \cite{issue_request_new_docker_version}.
+	\item Reported general failing of CI for ion shell \cite{issue_failing_ci}.
 \end{itemize}
 
 \subsection{Still Opened Issues}
 
-This issues were opened by me to report an problem. But they have not been solved yet.
+This issues were opened by me to report a problem. But they have not been solved yet.
 
 \begin{itemize}
 	\item Noted null-coalescing operator as a possible language feature \cite{issue_null_coalescing_operator}. Was brought up in the discussion in the issue \cite{pr_subst_method}.
 	\item Noted down the trenary as a possible language feature \cite{issue_ternary_operator_arrays_strings}. Was brought up in the discussion in the issue \cite{pr_subst_method}.
-	\item Reported the missing feature of handling redox os schemes in general \cite{issue_disk_scheme}.
+	\item Reported the missing feature of handling Redox OS schemes in general \cite{issue_disk_scheme}.
 	\item Proposed more information for error messages to end user. Espeacally by providing the locatoin where the error occured, ake line and colum \cite{issue_enrich_error_message_information}.
-	\item Reported general failing of Ci for ion shell \cite{issue_failing_ci}.
 	\item Reported that a job called "linux:stable" in the Ci still fails \cite{issue_ci_linux_stable_fail}.
 	\item Proposal of converting Make files and bash scripts to cargo-xtask automation \cite{issue_convert_make_files_to_xtask}.
 \end{itemize}

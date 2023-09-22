@@ -2,62 +2,65 @@
 
 \section{Reading up on and becoming acquainted with Ion Shell}
 
-Before contributing, knowledge and a certain understanding of Ion Shell and Redox Ox needed to be obtained.
+Before contributing, knowledge and a certain understanding of Ion Shell and Redox OS was needed to be obtained.
 The following activities were undertaken to get ready for development in Ion Shell:
 
 \begin{itemize}
 	\item Reading the Redox Os book \cite{redox_os_book}.
 	\item Going through the online manual of Ion Shell \cite{ion_manual_instroduction}.
-	\item Reading posted issues on the GitLab Repository of Ion shell.
-	\item Reading the contribution guideline of Ion Shell \cite{ion_shell_contributing}.
-	\item Explore scripting of Ion Shell.
+	\item Scrutinizing the posted issues on the GitLab Repository of Ion shell.
+	\item Reading up on the contribution guideline of Ion Shell \cite{ion_shell_contributing}.
+	\item Exploring scripting of Ion Shell.
 \end{itemize}
 
-The online manual of the shell is meant for the users of the application.
+The online manual of Ion Shell is meant for the user of this program.
 It focuses on the following points:
 
 \begin{itemize}
+	\item Philosophy of the shell. Why does it exist and what it is supposed to be.
 	\item Features of the scripting language of Ion Shell.
 	\item What and how something can be done in an interactive session.
-	\item Philosophy the application. Why does it exist and what it is supposed to be.
 \end{itemize}
 
-Ion manual is build by the program of the rust program mdBook, \cite{mdBook}, which converts markdown file into folder of
-HTML, CSS and JavaScript files for hosting a documentation as a website.
-Investigating the online manual of Ion shell provided the overview of already implemented features and
+Ion manual is build by rust program named mdBook, \cite{mdBook}.
+MdBook converts markdown files into a folder with
+HTML, CSS and JavaScript files as content.
+Such a folder can then be used for hosting a online documentation.
+Investigating the online manual of Ion Shell provided the overview of already implemented features and
 how the shell was meant to be used.
 While reading the manual, it became clear that the documentation lacked explanations in certain areas.
 Later on additions to the documentation were also required for new implemented features in Ion Shell.
 Ion shell's manual inevitably became one of the fields for contribution.
+
 Another important source for the deduction of tasks was the
-collection of issues and pending pull requests from Ion shell's repository.
+collection of issues and pending pull requests from Ion Shell's repository.
 Over the course of the it project general knowledge
 about Redox OS was extracted from the official redox OS book \cite{redox_os_book}.
-The good practices for development were derived from the Contributing markdown file of the Ion Shell repository \cite{ion_shell_contributing}.
+Certain practices for development were derived from the Contributing markdown file of the Ion Shell repository \cite{ion_shell_contributing}.
 
 \section{Development in general}
 
-The whole program is developed in the Rust programming language like the whole ecosystem of Redox os.
-Beside the Rust, knowledge about Make files proved invaluable to understand the working of the integration tests and
-allowed to add more capability of running only one specific interrogation test, accomplished by the pull request \cite{pr_single_test_selectable}.
+The whole program is developed in the Rust programming language. Programs written in Rust
+are typical throughout the ecosystem of Redox OS.
+Beside Rust, knowledge about Make files and scripting in Bash proved invaluable to understand the working of the integration tests and
+allowed to add the capability of running only one specific interrogation test, accomplished by the pull request \cite{pr_single_test_selectable}.
 The mastering of the scripting language of Ion Shell was vital too. Without it I could have not found out the correct behaviour
 which is to be achieved after a bug fix or feature implementation.
 
-The communication with redox OS community were done by a matrix sever \cite{matrix_channel}.
-As contributor to Ion Shell I forked the Ion Shell repository and developed on this fork.
+The communication with Redox OS community were done on a matrix sever \cite{matrix_channel}.
+As contributor to Ion Shell I forked the Ion Shell repository and developed on my own fork.
 Once a change to the code base was ready to be merged,
 I prepared the pull request,
-according to the official redox OS guideline about pull requests \cite{redox_pr_guideline}.
-
+according to the official Redox OS guidelines on pull requests \cite{redox_pr_guideline}.
 
 \section{Verification of bug fixes and implementation via automated testing of features}\label{impl:integration_test}
 
-The main way to verify correctness of features and bug fixes is the usage of unit tests and integration tests.
-Unit tests and integration tests are the 2 forms of tests used to verify the functionality of the shell.
-The observation of the code base suggests that the first form as unit tests are mainly used to inspect the correctness of tokenisation, parsing and
-evaluation of the builtin functions of the shell in isolation.
-It is important to note that these unit tests execute and assert inner/private functions too
-in contrast to other programming languages like CSharp where unit test should not access private functionality easily.
+The main way to verify correctness of features and effectiveness of bug fixes is the usage of unit and integration tests.
+The observation of the code base suggests that the first form as unit tests are mainly
+used to inspect the correctness of tokenisation, parsing and
+evaluation of the Ion Shell methods in isolation.
+It is important to note that those unit tests execute and assert inner/private functions too
+in contrast to other programming languages like C\# where unit test can not access private functionality normally.
 This is typical in the Rust language because unit tests are often in the children module in respect of the code to be tested.
 Visibility in Rust enables code in a children module to have full access to all functionality in a parent module.
 This allows to test private functions in Rust easily \cite{rust_testing_private_function}.
@@ -69,15 +72,13 @@ This kind of integration test therefore focuses on the scripting aspect of the s
 Especially this kind of testing is valued highly according to the Contributing Guidelines of this project \cite{ion_shell_contributing}.
 Since rust does not provide a builtin way to perform these kinds of tests,
 a rather complex bash script was written to orchestrate this kind of integration tests.
-Before this it project there was no explanation of how these new integration tests are executed and how they should be written.
+Before start of the it project there was no explanation of how integration tests are executed and how they should be written.
 It was however paramount to add new integration tests to verify bug fixes and implemented features.
 A documentation section in the contributing guideline was crafted during the process of
-learning the working of this integration tests \cite{ion_shell_contributing}.
-This will hopefully reduce the learning effort for future contributors in the area of integration tests.
+learning the functionality of integration tests \cite{ion_shell_contributing}.
+This documentation aims to reduce the learning effort for future contributors in the area of integration tests.
 
 \section{Example of development}
-
-\subsection{Implementing an array method in Ion Shell}
 
 The implementation of the feature of the method "subst" ought to represent in the development work in Ion Shell.
 This method allows to provide a default value for an empty array.
@@ -92,21 +93,18 @@ The following tasks were performed to archive the implementation:
 
 In the end the implementation was proposed and merged under the following pull request \cite{pr_subst_method}.
 
-\subsubsection{Finding out the desired behaviour of "subst"}\label{subst_desired_behaviour}
+\subsection{Finding out the desired behaviour of "subst"}\label{subst_desired_behaviour}
 
-This feature was requested in an issue a certain while ago \cite{issue_subst_request}.
-In this issue the specifics of behaviour of this array method have already been discussed too.
-The discussion concluded the following signature of "subst".
-
-```text
+A while ago this feature was requested in an issue \cite{issue_subst_request}.
+In this issue the desired behaviour of this array method has already been discussed and determined.
+The discussion concluded the following signature for "subst".
+\begin{verbatim}
 subst(input: T, default: T) -> T
-```
-source: \cite{issue_subst_request}
-
-Where the invariant says that T must be of type array.
-This array method takes two arguments as arrays and returns either the first or second argument.
+\end{verbatim}
+Where T must be of type array.
+The method takes two arguments as array values and returns either the first or second argument.
 The first one is returned if it is not an empty array. Otherwise the second argument is returned.
-The accomplished implementation follows the signature and invariant.
+The accomplished implementation follows the signature and mentioned conditions.
 
 \subsection{Creating integration test for the implementation}\label{subst_test}
 
@@ -119,27 +117,35 @@ where "subst" is the name of the test. Both file must share the same base file n
 The code snippet \ref{code:subst_test} represents the test code and should
 produce the following expected output \ref{code:subst_test_out}.
 
-In additions to the integration tests unit tests were put in place to verify the finer details of the implementation.
+
+\ionCode{subst_test}{code:subst_test}{ion_shell_subst_ion_test_ion}{Ion shell script for testing implementation of subst method}
+
+\clearpage
+
+\ionCode{subst_out}{code:subst_test_out}{ion_shell_subst_ion_test_out}{Expected output of executed test script for subst \ref{code:subst_test}}
+
+
+In addition unit tests were put in place to verify the finer details of the implementation.
 Every unit test is presented as function annotated with "\#[test]" in the code snippet \ref{code:unit_test_subst}.
 
-\ionCode{subst_test}{code:subst_test}{ion_shell_subst_ion_test}{Ion shell script for testing implementation of subst method}
-\ionCode{subst_out}{code:subst_test_out}{ion_shell_subst_ion_test_out}{Expected output of executed test script for subst \ref{code:subst_test}.}
-
-\rustCode{unit_test_subst}{code:unit_test_subst}{pr_subst_method}{Unit test for the implementation of the method "subst".}
+\rustCode{unit_test_subst}{code:unit_test_subst}{pr_subst_method}{Unit test for the implementation of the method "subst"}
 
 \subsection{Implementation of "subst"}
 
-After settling goals and the verification of the implementation it is time make this feature a reality via Rust code.
-The implementation of the method is contained the function shown in \ref{code:array_method_impl}.
+After determining the desired behaviour and the verification of the implementation
+it is time make this feature a reality.
+The implementation of the method is contained inside the function shown in \ref{code:array_method_impl}.
 The first part of the function validates if the first and second argument are of type array,
-from line \ref{code:subst_start_validate} to line \ref{code:subst_end_validate}.
-This validation ensures that an error is returned if the user violates the conditions which were lay out, see \ref{subst_desired_behaviour} section.
-Errors in Rust are propagated by value rather than exceptions. This is done via the generic enum type Result<T, E> where T is the type of the value in the successful case
-and E is the type of value which communicates what went wrong in case of error.
-A functions therefore declares via its return type of the enum Result<T, E> that it can fail, line \ref{code:subst_return_type}.
-Within the code section for validating the arguments, the function returns Err variants, case of the violation of the stated conditions
-\ref{subst_desired_behaviour}, at several places, at line \ref{code:subst_err_1}, \ref{code:subst_err_2} and \ref{code:subst_err_3}.
-There is another spot where an error is returned. This spot can be found by the "?" character which signifies that if an error is given,
+from line \ref{code:subst_start_validate} to \ref{code:subst_end_validate}.
+This validation ensures that an error is returned
+if the user violates the conditions which were lay out previous section \ref{subst_desired_behaviour}.
+Errors in Rust are propagated by value instead of exceptions.
+This is done via the generic enum type Result<T, E> where T is the type of the value in the successful case
+and E is the type of value which communicates what went wrong in the case of an error.
+The functions for "subst" therefore declares via its return type of the enum Result<T, E> that it can fail at line \ref{code:subst_return_type}.
+Within the code section for validating the arguments, the function returns Err variants in several places, line \ref{code:subst_err_1}, \ref{code:subst_err_2} and \ref{code:subst_err_3}.
+These spots signify the violation of mentioned condition for "subst", \ref{subst_desired_behaviour}.
+There is another place where an error is returned. This spot can be found by "?" character which signifies that if an error is given,
 then propagate this error to the caller of the function at line \ref{code:subst_end_validate}.
 This propagation equals a rethrowing of an exception in C\#:
 
@@ -151,21 +157,23 @@ This propagation equals a rethrowing of an exception in C\#:
 	}
 \end{verbatim}
 
-Between line \ref{code:subst_success_start} and line \ref{code:subst_success_end} the success case is performed by returning the first argument back if it is not empty, line \ref{code:subst_return_success_1}.
-The second one is returned only if the first one is an empty array, line \ref{code:subst_return_success_2}.
+Between line \ref{code:subst_success_start} and line \ref{code:subst_success_end}
+the logic for the successful case is performed
+by returning the first argument back if it is not empty array at line \ref{code:subst_return_success_1}.
+The second one is returned only if the first one is an empty array at line \ref{code:subst_return_success_2}.
 
 \rustCode{array_method_impl}{code:array_method_impl}{pr_subst_method}{Function which implements the subst method}
 
 \subsection{Documentation of "subst"}
 
-After the implementation an explanation of this method was noted down in array method section of the Ion Shell manual \cite{ion_manual_array_methods}.
+After the implementation an explanation of this method was noted down in the chapter of array methods withing the Ion Shell manual \cite{ion_manual_array_methods}.
 This documentation covers the following aspects:
+
 \begin{enumerate}
 	\item What does it do.
 	\item What is expected of the provided arguments and when an error is raised.
 	\item Example of the usage with an expected output.
 \end{enumerate}
 
-The first and second point are communicating the established conditions the functions expects to be called, shown at \ref{subst_desired_behaviour}.
-
+The second point communicates the established conditions the functions, shown at \ref{subst_desired_behaviour}.
 
