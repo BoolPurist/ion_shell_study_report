@@ -8,6 +8,8 @@
 *.bbl
 *.blg
 *.run.xml
+*.pdf
 *.out
 *.fdb_latexmk
 *.fls
+*.zip

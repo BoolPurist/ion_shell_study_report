@@ -7,7 +7,7 @@ THESIS=thesis
 
 run: $(THESIS).pdf
 
-$(THESIS).pdf: SB_0050_FO $(THESIS).bbl $(THESIS).tex
+$(THESIS).pdf: $(THESIS).bbl $(THESIS).tex
 	pdflatex $(THESIS).tex -draftmode
 	pdflatex $(THESIS).tex 
 
