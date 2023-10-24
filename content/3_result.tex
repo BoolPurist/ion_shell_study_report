@@ -29,8 +29,8 @@ how to write the integration tests in Ion Shell \cite{pr_docs_how_to_integration
 
 \subsection{Capabilities of Ion Shell}
 
-Ion Shell is not only capable of running on Redox OS but also quit well on a Linux distribution.
-This fact became more than clear by the my conducted development of Ion Shell on a Linux distribution.
+Ion Shell is not only capable of running on Redox OS but also quite well on a Linux distribution.
+This fact became more than clear by my conducted development of Ion Shell on a Linux distribution.
 
 The scripting API of Ion Shell allows for writing more correct automation compared to shells like Bash.
 Structural typing and various higher level language features like expansion, \ref{ion_shell_lang_expansion}, methods, \ref{ion_shell_lang_methods}, and control flow, \ref{ion_shell_lang_control_flow}.
@@ -38,7 +38,7 @@ Structural typing and various higher level language features like expansion, \re
 \subsection{Problems with Ion Shell}\label{label:problems_ion_shell}
 
 However Ion Shell has unfortunately several troublesome areas
-which hinders development and wider adoption among users.
+that hinder development and wider adoption among users.
 This section points out those aspects of Ion Shell which should be improved on.
 
 \newcommand{\itemIonShellRegularContributor}{Ion Shell has no regular contributors}
@@ -56,13 +56,13 @@ This section points out those aspects of Ion Shell which should be improved on.
 \subsection{\itemIonShellRegularContributor}\label{itemIonShellRegularContributor}
 
 The repository of Ion Shell does not indicate an active development community
-from the beginning of the it project up to the moment of writing this report.
+from the beginning of the project up to the moment of writing this report.
 Before my first contribution
-the last commit of someone else than the BDFL of Redox OS, Jeremy Soller,
+the last commit of someone else other than the BDFL of Redox OS, Jeremy Soller,
 was on the 27th of November in 2022.
 Most commits were done by me during the period of the it project.
-An exceptions was a pull request from another person \cite{pr_ion_shell_global_alias}.
-Throughout the it-project there was only one person, BDFL of Redox Os, who reviewed and accepted pull requests.
+An exception was a pull request from another person \cite{pr_ion_shell_global_alias}.
+Throughout the project there was only one person, BDFL of Redox OS, who reviewed and accepted pull requests.
 A prolonged lack of regular contributors could lead to a complete halt in the development of Ion Shell.
 
 \subsection{\itemIonShellDependencies}\label{itemIonShellDependencies}
@@ -70,33 +70,32 @@ A prolonged lack of regular contributors could lead to a complete halt in the de
 A number of dependencies used by Ion Shell are not maintained anymore, calculate and redox\_liner.
 If newly needed features or bugs arise from those libraries,
 then contributors of Ion Shell have to do it on their own.
-This puts more complexity on the new potential contributors
-as they might have to learn and adjust a separate code bases.
+This puts more complexity on new potential contributors
+as they might have to learn and adjust a separate codebase.
 
 \subsection{\itemIonShellDistribution}\label{itemIonShellDistribution}
 
 Ion Shell can be still considered an alpha program.
-During the development phase of it project I discovered quickly new bugs
+During the development phase of the project I discovered quickly new bugs
 and features which are well established known among other shells.
 With a larger user space these issues could be detected early.
-More users could provide more feedback to the program and even attract potential contributors.
+Additional users could provide increased feedback to the program and even attract potential contributors.
 Additional contributors is what this project really needs the most.
-Ion Shell can be complied and run on Linux.
-However it lacks official distribution channels for linux user .
-A user indenting to use this shell, has to install the rust tool chain before and then compile the program.
-More Linux user could be reached if the program was released on distribution channels like dnf, apt, etc.
+Ion Shell can be compiled and run on Linux.
+However it lacks official distribution channels for linux users.
+A user intending to use this shell, has to install the rust toolchain beforehand to then compile the program.
+More Linux users could be reached if the program was released on distribution channels like dnf, apt, etc.
 
 \subsection{\itemIonShellCI}\label{section:ci_ion_shell}
 
 Some jobs of the CI of Ion Shell do still not complete successfully.
-This is problematic. While local compilation and running manually
-the test suit can provide detection of bugs, it not enforced automatically.
+This is problematic. While local compilation and running the testsuite manually can provide detection of bugs, it not enforced automatically.
 Every pull request therefore requires the code reviewer to
-make sure that the compilation and test suit pass successful.
-This could be automated with a proper CI.
-Beside causing more work for the reviewer, it also can hinder
+ensure that the compilation and testsuite are successful.
+This could be automated with proper CI.
+Beside causing more burden for the reviewer, it may hinder
 the confidence of new contributors not knowing that CI can not run successfully right now.
-I tried communicating this problem via following issues \cite{issue_ci_linux_stable_fail}.
+I tried communicating this problem via the following issues \cite{issue_ci_linux_stable_fail}.
 In addition I talked to the community
 about this on the matrix server on several occasions \cite{matrix_channel}.
 So far the problem could not be resolved.
@@ -105,9 +104,9 @@ So far the problem could not be resolved.
 
 \section{What is left to do in Ion Shell}
 
-This section describes which goals for the it project could not be archived.
+This section describes which goals for the project could not be achieved.
 The reason why a goal could not be accomplished is also provided.
-The following goals could not be archived.
+The following goals could not be achieved.
 \begin{itemize}
 	\item Incorporate the source location, (file name, line number, column number) into the error message.
 	\item Implement wild card expansion for various schemes like disk.
@@ -115,11 +114,11 @@ The following goals could not be archived.
 	\item Migration from Makefiles/Bash to cargo-xtask automation.
 \end{itemize}
 
-The following bullet points were non-goals during the it-project.
-Nonetheless they were identified as worthwhile endeavours.
+The following bulletpoints were non-goals during the project.
+Nevertheless they were identified as worthwhile endeavours.
 
 \begin{itemize}
-	\item Provide various deploy set ups to publish Ion Shell on various package managers like apt, dnf, ..
+	\item Provide various deploy setups to publish Ion Shell on various package managers like apt, dnf, ..
 	\item Port Ion Shell to windows.
 \end{itemize}
 
@@ -127,8 +126,8 @@ Nonetheless they were identified as worthwhile endeavours.
 
 One area of contribution was focused on enriching error message in Ion Shell.
 Error messages in Ion Shell already provide specific information about what problem occurred.
-However the details within certain error messages had some potential for improvement.
-The following merged pull requests of mine were focused on that areas:
+However the details of certain error messages begged for improvement.
+The following merged pull-requests of mine were focused on that areas:
 
 \begin{itemize}
 	\item Out of bounds errors show the invalid index and the length of an array \cite{pr_error_message_shows_invalid_range}.
@@ -139,15 +138,15 @@ Another aspect of missing information for error messages was the source location
 The source location is the respective line and column number.
 The source location in an error message as a feature were noted down
 in an still opened issue \cite{issue_enrich_error_message_information} .
-It was my indentation to add the source location to a raised error message.
-In the end of the it project I was not able to do so though.
+It was my intention to add the source location to a raised error message.
+Ultimately, I was unable to do so.
 The parser of ion shell does not keep track of line and column numbers for statements.
-Because of this, one can not simply incorporate the source location into the error messages.
+Because of this, one cannot simply incorporate the source location into the error messages.
 
 A workaround was attempted via counting at least the line numbers per executed statement.
-There is a for loop, the following code snippet represents this loop as a simplified and
+There is a for loop; the following code snippet represents this loop as a simplified and
 modified version \ref{code:execution_for_code_snippet}.
-This loop orchestrate the tokenisation, parsing and evaluation of statements one by one in Ion Shell.
+This loop orchestrates the tokenisation, parsing and evaluation of statements one by one in Ion Shell.
 In the modified version there two additional statements.
 The first addition is the declaration of the line numbers
 to count per statement at line \ref{code:execute_loop_line_init}.
@@ -174,7 +173,7 @@ In addition the execution of string and array methods do not propagate their err
 to the execution loop \ref{code:execution_for_code_snippet} like the rest of the code base.
 If an error is caused, a message is directly printed to the console,
 between line \ref{code:ion_status_print_err_1} and \ref{code:ion_status_print_err_2} within \ref{code:ion_file_status}.
-This not consistent and should be refactored so that the error is propagated
+This is not consistent and should be refactored so that the error is propagated
 to the previously mentioned execution loop \ref{code:execution_for_code_snippet}.
 
 \rustCode{status_struct}{code:ion_file_status}{ion_file_status}{How builtin method print raised errors directly to the consoel}
@@ -182,13 +181,13 @@ to the previously mentioned execution loop \ref{code:execution_for_code_snippet}
 In my view the best solution is to rewrite the tokenisation and parsing.
 This rewrite should make token/language items linked to their respective column and line number.
 That refactor however requires coordination with the repository owners and significant amount of work
-which exceeds the available time I could afford to spend for the it project.
+which exceeds the available time I could afford to spend for the project.
 
 \subsection{Wild card expansion of schemes resources}
 
 Since Ion Shell is meant to be used as the default shell within Redox OS,
 the correct handling of paths to resources within schemes is a vital part.
-Schemes in redox Os facilitate inter process communication in Redox OS.
+Schemes in redox OS facilitate inter process communication in Redox OS.
 A scheme signifies a certain type of a resource.
 The following snippet shows an example of reference to a resource within the file scheme.
 \begin{verbatim}
@@ -200,8 +199,8 @@ in this case the path to a file or directory with the name "some data".
 
 Ion shell as a program running in Redox OS, has the kernel
 handle the resolution of resources of a certain scheme.
-However the kernel itself does not have the concept of wild cards within a reference for scheme.
-A conses among the Redox Os developer community was established
+However the kernel itself does not have the concept of wildcards within a reference for scheme.
+The consensus among the Redox OS developer community was established
 that Ion Shell is meant to jump in and handle the resolution of wild cards.
 This opinion came up through a discussion on the matrix server, \cite{matrix_channel}.
 The following example is expected to be resolved to all paths under the folder "/home/some\_user".
@@ -209,14 +208,14 @@ The following example is expected to be resolved to all paths under the folder "
  file:/home/some_user/*
 \end{verbatim}
 
-While developing on Ion Shell I could implement a workaround for the wild card expansion of the file scheme
+While developing on Ion Shell I could implement a workaround for the wildcard expansion of the file scheme
 via the pull request \cite{pr_file_scheme} .
 This pull requests relates to the issue \cite{issue_file_scheme}.
 Expansion for other schemes like "disk" are still missing.
 This missing feature is documented by following issue \cite{issue_disk_scheme}.
-Over time it became clear that the wild card expansion for schemes
+Over time it became clear that the wildcard expansion for schemes
 should be implemented in a separate Rust crate.
-Creating a separate library is outside the scope of this it project though.
+Creating a separate library is outside the scope of this project though.
 
 \subsection{Make all jobs work on the CI}
 
@@ -230,20 +229,20 @@ an update of the docker image on docker hub \cite{docker_hub_redoxer}.
 \subsection{Make Ion Shell available as binary on different Linux distribution}
 
 At the moment of writing this report,
-the only way to use Ion Shell as an end user is to compile the program with the rust compiler.
-This fact brings up a few disadvantage which are described in \ref{section:ci_ion_shell}.
+the only way to use Ion Shell as an enduser is to compile the program with the rust compiler.
+This fact brings up a few disadvantages which are described in \ref{section:ci_ion_shell}.
 
 \subsection{Porting to windows}
 
 A port to windows is desired according to the introduction page of Ion manual \cite{ion_manual_instroduction}.
 This port could indeed increase the number of users since windows
-as an OS has a large user base in the realm of desktop computers.
+as an OS has a large userbase in the realm of desktop computers.
 
 \subsection{Migration from Makefiles/Bash to cargo-xtask automation}
 
 While cargo for Rust simplifies the compiling and running of rust programs,
 task like running the test suit or building the ion manual are however project specific tasks.
-Specific project task are done by Bash scripts and Make files within the Ion Shell repository.
+Specific project task are done by Bash scripts and Makefiles within the Ion Shell repository.
 As pointed out in a posted issue \cite{issue_convert_make_files_to_xtask},
 that approach does not scale well on the long run.
 This issue proposes the usage of the cargo-xtask convention instead of Make files and Bash scripts.
